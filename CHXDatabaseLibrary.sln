@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHXDataService", "CHXDataService\CHXDataService.csproj", "{679F4B49-3392-4D90-AD63-B6C080C3EF2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHXDataService.Api", "CHXDataService.Api\CHXDataService.Api.csproj", "{67AC1A65-D1B1-49C8-9F75-EA566C391CA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHXAuthenticate", "CHXAuthenticate\CHXAuthenticate.csproj", "{1576429F-6FB8-4AF3-AED6-A1A13CF03372}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{679F4B49-3392-4D90-AD63-B6C080C3EF2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{679F4B49-3392-4D90-AD63-B6C080C3EF2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{679F4B49-3392-4D90-AD63-B6C080C3EF2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67AC1A65-D1B1-49C8-9F75-EA566C391CA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67AC1A65-D1B1-49C8-9F75-EA566C391CA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67AC1A65-D1B1-49C8-9F75-EA566C391CA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67AC1A65-D1B1-49C8-9F75-EA566C391CA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1576429F-6FB8-4AF3-AED6-A1A13CF03372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1576429F-6FB8-4AF3-AED6-A1A13CF03372}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1576429F-6FB8-4AF3-AED6-A1A13CF03372}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1576429F-6FB8-4AF3-AED6-A1A13CF03372}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

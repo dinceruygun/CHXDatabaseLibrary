@@ -1,13 +1,24 @@
 ﻿using System.Text.RegularExpressions;
 using Nancy;
 using System.Collections.Generic;
+using CHXDataService.Api;
+using System.Linq;
+using System;
+
 
 namespace CHXDataService.Modules
 {
-    public class IndexModule: NancyModule
+    public class IndexModule: SecureModule
     {
+
+        CHXDataServiceApiManager apiManager;
+
+
         public IndexModule()
         {
+
+            apiManager = new CHXDataServiceApiManager();
+
 
             Get[@"/{uri*}"] = parameters =>
             {
@@ -21,29 +32,46 @@ namespace CHXDataService.Modules
                     return null;
                 }
             };
-            Get["/Log"] = parameters =>
+
+
+
+            Get["/"] = _ =>
             {
-                return View["index"];
+                if (!IsAuthenticated)
+                {
+                    return HttpStatusCode.Forbidden;
+                }
+
+                return "Hello User!";
             };
 
 
-            Get["/check"] = x =>
+
+            Post["/{controller}/{model}"] = parameters =>
             {
-                if (checkAllowAddress(Request.UserHostAddress))
+
+                if (!IsAuthenticated)
                 {
-                    //NetgisCheckContainer.CheckNetgis(Request.UserHostAddress);
-                    return "OK";
+                    return HttpStatusCode.Forbidden;
                 }
-                else
-                {
-                    return "Yetkiniz bulunmuyor!";
-                }
+                
+
+                var controller = parameters.controller;
+                var model = parameters.model;
+
+
+                var data = new System.IO.StreamReader(this.Request.Body).ReadToEnd();
+
+
+                apiManager.Call(controller, model, data, CurrentIdentity);
+
+
+                return data;
 
             };
+
 
         }
-
-
 
 
 
