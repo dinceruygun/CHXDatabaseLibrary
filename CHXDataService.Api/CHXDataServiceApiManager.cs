@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Nancy;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,14 +11,32 @@ namespace CHXDataService.Api
 {
     public class CHXDataServiceApiManager
     {
-        public void Call(string controllerName, string modelName, string data, IIdentity currentIdentity)
+        public void Call(string controllerName, string modelName, Request request, ClaimsPrincipal principal)
         {
-            var controller = CHXApiControllerFactory.GetApiController(controllerName);
+            var controller = CHXApiControllerFactory.GetApiController(controllerName, principal);
+            control(controller);
 
-            if (controller == null) throw new KeyNotFoundException();
 
-            var model = controller.GetModel(modelName);
+            var model = ((ICHXApiController)controller).GetModel(modelName);
+            control((CHXApi)model);
 
+
+            CHXHttpRequest.CHXContentTypeExtensions.IsBinary
+
+            ((CHXApi)model).Call("");
+            
+        }
+
+
+
+        protected bool control(CHXApi model)
+        {
+            if (model == null) throw new KeyNotFoundException();
+
+            if (!model.IsPermission) throw new UnauthorizedAccessException($"{model.ModelName} modeline yetkiniz bulunmuyor");
+
+
+            return true;
         }
     }
 }

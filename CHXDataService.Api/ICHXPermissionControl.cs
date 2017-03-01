@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CHXDataService.Api
 {
-    public interface ICHXApiController
+    interface ICHXPermissionControl
     {
-        ICHXApiModel GetModel(string modelName);
+        bool PermissionControl();
     }
 }

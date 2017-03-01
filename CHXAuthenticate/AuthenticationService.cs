@@ -41,7 +41,9 @@ namespace CHXAuthenticate
             }
 
             // We got a User, now obtain his claims from DB:
-            IList<Claim> claims = new List<Claim>();
+            IList<Claim> claims = new List<Claim>() { };
+            
+            claims.Add(new Claim() { Type = "urn:sample:netcad", Value = "true", Id = 1 });
 
             // And return the UserIdentity:
             identity = Convert(user, claims);

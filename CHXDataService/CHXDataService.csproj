@@ -130,6 +130,7 @@
     <Compile Include="Authentication\OAuthTokenProvider.cs" />
     <Compile Include="Authentication\PrincipalExtensions.cs" />
     <Compile Include="Authentication\SimpleAuthorizationServerProvider.cs" />
+    <Compile Include="Authentication\SimpleRefreshTokenProvider.cs" />
     <Compile Include="HostService.cs" />
     <Compile Include="Modules\IndexModule.cs" />
     <Compile Include="Modules\RegistrationModule.cs" />

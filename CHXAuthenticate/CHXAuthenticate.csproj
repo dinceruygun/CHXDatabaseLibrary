@@ -53,6 +53,7 @@
     <Compile Include="HashProvider.cs" />
     <Compile Include="IApplicationSettings.cs" />
     <Compile Include="IAuthenticationService.cs" />
+    <Compile Include="IAuthenticationTokenProvider.cs" />
     <Compile Include="ICryptoService.cs" />
     <Compile Include="IHashProvider.cs" />
     <Compile Include="IRegistrationService.cs" />

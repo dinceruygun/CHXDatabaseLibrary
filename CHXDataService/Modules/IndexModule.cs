@@ -60,13 +60,10 @@ namespace CHXDataService.Modules
                 var model = parameters.model;
 
 
-                var data = new System.IO.StreamReader(this.Request.Body).ReadToEnd();
+                apiManager.Call(controller, model, this.Request, Principal);
 
 
-                apiManager.Call(controller, model, data, CurrentIdentity);
-
-
-                return data;
+                return HttpStatusCode.Forbidden;
 
             };
 

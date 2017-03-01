@@ -78,8 +78,9 @@ namespace CHXDataService
             {
                 AllowInsecureHttp = true, // you should use this for debugging only
                 TokenEndpointPath = new PathString(settings.TokenEndpointBasePath),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(5),
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
                 Provider = new SimpleAuthorizationServerProvider(container.Resolve<IAuthenticationService>()),
+                RefreshTokenProvider = new SimpleRefreshTokenProvider()
             });
         }
 
