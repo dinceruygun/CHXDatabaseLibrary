@@ -1,4 +1,6 @@
-﻿using Nancy;
+﻿using CHXConverter;
+using CHXDataService.Api.CHXHttpRequest;
+using Nancy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +23,15 @@ namespace CHXDataService.Api
             control((CHXApi)model);
 
 
-            CHXHttpRequest.CHXContentTypeExtensions.IsBinary
+
+            var converter = new CHXConverterManager(CHXConverterType.CHXHttp);
+            converter.Convert(request);
+
+
+
+
+            var contentType = request.Headers.ContentType.GetContentType();
+
 
             ((CHXApi)model).Call("");
             

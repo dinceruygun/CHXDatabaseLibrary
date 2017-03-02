@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CHXDataService.Api.CHXHttpRequest
+namespace CHXConverter.CHXHttpConverter
 {
     public static class CHXContentTypeExtensions
     {
