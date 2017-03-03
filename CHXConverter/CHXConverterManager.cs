@@ -9,6 +9,7 @@ namespace CHXConverter
     public class CHXConverterManager
     {
         private CHXConverterType _convertType;
+        private ICHXConverter _converter;
 
         public CHXConverterManager(CHXConverterType convertType)
         {
@@ -28,9 +29,32 @@ namespace CHXConverter
             }
         }
 
-        public void Convert(object data)
+        public ICHXConverter Converter
         {
-            throw new NotImplementedException();
+            get
+            {
+                if (_converter == null)
+                {
+                    _converter = CHXConverterFactory.GetConverter(_convertType);
+                }
+
+                return _converter;
+            }
+        }
+
+        public object Convert(object data)
+        {
+            var retData = Converter.Run(data);
+
+            return retData;
+        }
+
+
+        public object Convert(object data, string needProperty)
+        {
+            var retData = Converter.Run(data, needProperty);
+
+            return retData;
         }
     }
 }

@@ -21,12 +21,18 @@ namespace CHXDataService.Api.CHXApiControllers.Data
 
         public ICHXApiModel GetModel(string modelName)
         {
-            throw new NotImplementedException();
+            switch (modelName.ToLower())
+            {
+                case "getalltables":
+                    return new Model.CHXGetAllTables(base.Principal);
+                default:
+                    return null;
+            }
         }
 
         public override string GetPermissionName()
         {
-            return "datacontroller";
+            return "data";
         }
     }
 }

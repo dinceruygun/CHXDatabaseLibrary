@@ -24,14 +24,8 @@ namespace CHXDataService.Api
 
 
 
-            var converter = new CHXConverterManager(CHXConverterType.CHXHttp);
-            converter.Convert(request);
-
-
-
-
-            var contentType = request.Headers.ContentType.GetContentType();
-
+            var converter = new CHXConverterManager(CHXConverterType.CHXHttpRequest);
+            var requestData = converter.Convert(request);
 
             ((CHXApi)model).Call("");
             

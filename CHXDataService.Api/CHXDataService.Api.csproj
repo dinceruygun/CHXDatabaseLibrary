@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="CHXApiControllerFactory.cs" />
     <Compile Include="CHXApiControllers\Data\CHXDataController.cs" />
+    <Compile Include="CHXApiControllers\Data\Model\CHXGetAllTables.cs" />
     <Compile Include="CHXDataServiceApiManager.cs" />
     <Compile Include="CHXApi.cs" />
     <Compile Include="CHXHttpRequest\CHXContentType.cs" />

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CHXConverter
 {
-    public enum CHXConverterType
+    public class CHXParameters:List<CHXParameter>
     {
-        CHXHttpRequest = 1
+
     }
 }

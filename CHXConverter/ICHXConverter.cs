@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace CHXConverter
 {
-    public enum CHXConverterType
+    public abstract class ICHXConverter
     {
-        CHXHttpRequest = 1
+        public abstract object Run(object data);
+        public abstract object Run(object data, string needProperty);
     }
 }

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CHXConverter
+namespace CHXConverter.CHXParameterType
 {
-    public enum CHXConverterType
+    public class CHXList: ICHXParameterType
     {
-        CHXHttpRequest = 1
+
     }
 }

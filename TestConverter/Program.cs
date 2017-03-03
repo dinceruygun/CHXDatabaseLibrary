@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CHXConverter
+namespace TestConverter
 {
-    public enum CHXConverterType
+    class Program
     {
-        CHXHttpRequest = 1
+        static void Main(string[] args)
+        {
+
+
+        }
     }
 }
