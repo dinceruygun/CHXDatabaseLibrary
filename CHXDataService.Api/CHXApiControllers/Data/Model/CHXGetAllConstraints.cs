@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CHXDataService.Api.CHXApiControllers.Data.Model
 {
-    public class CHXGetAllTables : CHXDataApi, ICHXDataApiModel
+    public class CHXGetAllConstraints: CHXDataApi, ICHXDataApiModel
     {
-        public CHXGetAllTables(ClaimsPrincipal principal) : base(principal)
+        public CHXGetAllConstraints(ClaimsPrincipal principal) : base(principal)
         {
 
         }
@@ -27,11 +27,14 @@ namespace CHXDataService.Api.CHXApiControllers.Data.Model
 
             if (myDatabase == null) return null;
 
-            var resultData = myDatabase.Database.Tables.Where(d => d.SchemaName == schemaName.Value.ToString()).Select(d =>
+            var resultData = myDatabase.Database.Constraints.Where(d => d.SchemaName == schemaName.Value.ToString()).Select(d =>
             new
             {
-                name = d.TableName,
-                isspatial = d.IsSpatial
+                tablename = d.TableName,
+                name = d.ConstraintName,
+                constrainttype = d.ConstraintType,
+                constraintvalue = d.ConstraintValue,
+                schemaname = d.SchemaName
             });
 
             return resultData;
@@ -39,7 +42,7 @@ namespace CHXDataService.Api.CHXApiControllers.Data.Model
 
         public override string GetPermissionName()
         {
-            return "data.getalltables";
+            return "data.getallconstraints";
         }
     }
 }

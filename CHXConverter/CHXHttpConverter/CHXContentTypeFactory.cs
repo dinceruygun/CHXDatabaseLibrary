@@ -18,5 +18,14 @@ namespace CHXConverter.CHXHttpConverter
             }
             else { return null; }
         }
+
+        internal static ICHXHtppRequestConverter GetRecycle(CHXContentType contentType)
+        {
+            if (contentType == CHXContentType.JSON)
+            {
+                return new ContentTypeContainer.CHXJson();
+            }
+            else { return null; }
+        }
     }
 }

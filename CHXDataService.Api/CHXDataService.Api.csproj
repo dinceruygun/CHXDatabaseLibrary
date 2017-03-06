@@ -44,6 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CHXApiControllers\Data\Model\CHXGetAllConstraints.cs" />
+    <Compile Include="CHXApiControllers\Data\Model\CHXGetAllIndexes.cs" />
+    <Compile Include="CHXApiControllers\Data\Model\CHXGetAllSequences.cs" />
+    <Compile Include="CHXApiControllers\Data\Model\CHXGetAllView.cs" />
+    <Compile Include="CHXApiControllers\Data\Model\CHXGetTable.cs" />
+    <Compile Include="CHXApiControllers\Data\Model\CHXGetView.cs" />
+    <Compile Include="CHXApiControllers\Data\Model\GetConstraint.cs" />
     <Compile Include="CHXDataApiControllerFactory.cs" />
     <Compile Include="CHXApiControllers\Data\CHXDataController.cs" />
     <Compile Include="CHXApiControllers\Data\Model\CHXGetAllTables.cs" />

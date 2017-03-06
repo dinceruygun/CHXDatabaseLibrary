@@ -6,6 +6,8 @@ using System.Linq;
 using System;
 using CHXDataService.Controller;
 using CHXApiController;
+using System.Diagnostics;
+using System.Text;
 
 namespace CHXDataService.Modules
 {
@@ -46,6 +48,10 @@ namespace CHXDataService.Modules
 
             Post["/{controller}/{model}"] = parameters =>
             {
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+
 
                 if (!IsAuthenticated)
                 {
@@ -59,17 +65,44 @@ namespace CHXDataService.Modules
 
                 ICHXApiController controller = CHXApiControllerFactory.GetController(controllerName);
 
-                if(controller!=null)
+                if (controller != null)
+                {
                     resultData = controller.Call(controllerName, modelName, this.Request, Principal);
+                }
 
+
+                if (resultData != null)
+                {
+                    return GetResponseData(resultData, ref stopwatch);
+                }
+
+
+                stopwatch.Stop();
 
                 return HttpStatusCode.Found;
 
             };
 
-
         }
 
+
+        protected string GetResponseData(string data, ref Stopwatch stopwatch)
+        {
+            StringBuilder responseData = new StringBuilder();
+
+            responseData.Append("{");
+            responseData.Append("\"elapsed\":");
+            responseData.Append("\"");
+            responseData.Append(stopwatch.Elapsed);
+            responseData.Append("\",");
+
+            responseData.Append("\"data\":");
+            responseData.Append(data);
+
+            responseData.Append("}");
+
+            return responseData.ToString();
+        }
 
 
         private bool checkAllowAddress(string address)

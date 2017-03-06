@@ -8,6 +8,7 @@ namespace CHXConverter
 {
     public abstract class ICHXConverter
     {
+        public abstract object Recycle(object data, object target);
         public abstract object Run(object data);
         public abstract object Run(object data, string needProperty);
     }

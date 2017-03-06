@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CHXDataService.Api.CHXApiControllers.Data.Model
 {
-    public class CHXGetAllTables : CHXDataApi, ICHXDataApiModel
+    public class CHXGetAllSequences: CHXDataApi, ICHXDataApiModel
     {
-        public CHXGetAllTables(ClaimsPrincipal principal) : base(principal)
+        public CHXGetAllSequences(ClaimsPrincipal principal) : base(principal)
         {
 
         }
@@ -27,11 +27,15 @@ namespace CHXDataService.Api.CHXApiControllers.Data.Model
 
             if (myDatabase == null) return null;
 
-            var resultData = myDatabase.Database.Tables.Where(d => d.SchemaName == schemaName.Value.ToString()).Select(d =>
-            new
-            {
-                name = d.TableName,
-                isspatial = d.IsSpatial
+            var resultData = myDatabase.Database.Sequences.Where(d => d.SchemaName == schemaName.Value.ToString()).Select(d => 
+            new {
+                name = d.SequenceName,
+                maximumvalue = d.MaximumValue,
+                minimumvalue = d.MinimumValue,
+                startvalue = d.StartValue,
+                tablename = d.TableName,
+                currentvalue = d.CurrentValue,
+                schemaname = d.SchemaName
             });
 
             return resultData;
@@ -39,7 +43,7 @@ namespace CHXDataService.Api.CHXApiControllers.Data.Model
 
         public override string GetPermissionName()
         {
-            return "data.getalltables";
+            return "data.getallsequences";
         }
     }
 }

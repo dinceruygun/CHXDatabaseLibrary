@@ -44,7 +44,14 @@ namespace CHXAuthenticate
             IList<Claim> claims = new List<Claim>() { };
             
             claims.Add(new Claim() { Type = "data", Value = "true", Id = 1 });
-            claims.Add(new Claim() { Type = "data.getalltables", Value = "true", Id = 1 });
+            claims.Add(new Claim() { Type = "data.getalltables", Value = "true", Id = 2 });
+            claims.Add(new Claim() { Type = "data.getallviews", Value = "true", Id = 3 });
+            claims.Add(new Claim() { Type = "data.getallsequences", Value = "true", Id = 4 });
+            claims.Add(new Claim() { Type = "data.getallindexes", Value = "true", Id = 5 });
+            claims.Add(new Claim() { Type = "data.getallconstraints", Value = "true", Id = 6 });
+            claims.Add(new Claim() { Type = "data.gettable", Value = "true", Id = 7 });
+            claims.Add(new Claim() { Type = "data.getview", Value = "true", Id = 8 });
+            claims.Add(new Claim() { Type = "data.getconstraint", Value = "true", Id = 9 });
 
             // And return the UserIdentity:
             identity = Convert(user, claims);

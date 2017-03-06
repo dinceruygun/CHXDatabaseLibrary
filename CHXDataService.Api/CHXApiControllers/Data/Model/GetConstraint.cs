@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CHXDataService.Api.CHXApiControllers.Data.Model
 {
-    public class CHXGetAllTables : CHXDataApi, ICHXDataApiModel
+    public class GetConstraint : CHXDataApi, ICHXDataApiModel
     {
-        public CHXGetAllTables(ClaimsPrincipal principal) : base(principal)
+        public GetConstraint(ClaimsPrincipal principal) : base(principal)
         {
 
         }
@@ -19,6 +19,9 @@ namespace CHXDataService.Api.CHXApiControllers.Data.Model
         {
             var serverName = data.Find("server");
             var schemaName = data.Find("schema");
+            var constraintName = data.Find("constraintname");
+            var tableName = data.Find("tablename");
+
 
             if (serverName == null) return null;
 
@@ -27,11 +30,14 @@ namespace CHXDataService.Api.CHXApiControllers.Data.Model
 
             if (myDatabase == null) return null;
 
-            var resultData = myDatabase.Database.Tables.Where(d => d.SchemaName == schemaName.Value.ToString()).Select(d =>
+            var resultData = myDatabase.Database.Constraints.Where(d => d.SchemaName == schemaName.Value.ToString() && d.ConstraintName == constraintName.Value.ToString() && d.TableName == tableName.Value.ToString() ).Select(d =>
             new
             {
-                name = d.TableName,
-                isspatial = d.IsSpatial
+                name = d.ConstraintName,
+                tablename = d.TableName,
+                constrainttype = d.ConstraintType,
+                constraintvalue = d.ConstraintValue,
+                schemaname = d.SchemaName,
             });
 
             return resultData;
@@ -39,7 +45,7 @@ namespace CHXDataService.Api.CHXApiControllers.Data.Model
 
         public override string GetPermissionName()
         {
-            return "data.getalltables";
+            return "data.getconstraint";
         }
     }
 }

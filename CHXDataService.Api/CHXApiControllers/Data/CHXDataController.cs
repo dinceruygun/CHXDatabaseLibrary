@@ -26,6 +26,20 @@ namespace CHXDataService.Api.CHXApiControllers.Data
             {
                 case "getalltables":
                     return new Model.CHXGetAllTables(base.Principal);
+                case "getallviews":
+                    return new Model.CHXGetAllView(base.Principal);
+                case "getallsequences":
+                    return new Model.CHXGetAllSequences(base.Principal);
+                case "getallindexes":
+                    return new Model.CHXGetAllIndexes(base.Principal);
+                case "getallconstraints":
+                    return new Model.CHXGetAllConstraints(base.Principal);
+                case "gettable":
+                    return new Model.CHXGetTable(base.Principal);
+                case "getview":
+                    return new Model.CHXGetView(base.Principal);
+                case "getconstraint":
+                    return new Model.GetConstraint(base.Principal);
                 default:
                     return null;
             }

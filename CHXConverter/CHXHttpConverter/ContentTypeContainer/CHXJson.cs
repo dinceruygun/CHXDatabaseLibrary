@@ -1,4 +1,7 @@
 ﻿using CHXConverter.CHXParameterType;
+using CHXDatabaseLibrary.DatabaseFeatures;
+using CHXDatabaseLibrary;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -10,6 +13,15 @@ namespace CHXConverter.CHXHttpConverter.ContentTypeContainer
 {
     public class CHXJson : ICHXHtppRequestConverter
     {
+        public override object RecycleInnerMethod(object data)
+        {
+            return JsonConvert.SerializeObject(data, Formatting.None,
+                        new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        });
+        }
+
         public override CHXRequest RunInnerMethod(object jsonData)
         {
             if (jsonData == null) return null;

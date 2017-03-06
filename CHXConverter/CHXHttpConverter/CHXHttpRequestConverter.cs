@@ -9,6 +9,22 @@ namespace CHXConverter.CHXHttpConverter
 {
     public class CHXHttpRequestConverter : ICHXConverter
     {
+        public override object Recycle(object data, object target)
+        {
+            if (target is Request)
+            {
+                var request = (target as Request);
+
+                var RecycleConverter = CHXContentTypeFactory.GetRecycle(request.Headers.ContentType.GetContentType());
+
+                return RecycleConverter.Recycle(data);
+            }
+            else
+            {
+                throw new Exception("Data Request türünde değil");
+            }
+        }
+
         public override object Run(object data)
         {
             return Run(data, null);

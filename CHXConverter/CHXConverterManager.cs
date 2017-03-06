@@ -42,6 +42,15 @@ namespace CHXConverter
             }
         }
 
+
+        public object Recycle(object data, object target)
+        {
+            var retData = Converter.Recycle(data, target);
+
+            return retData;
+        }
+
+
         public object Convert(object data)
         {
             var retData = Converter.Run(data);

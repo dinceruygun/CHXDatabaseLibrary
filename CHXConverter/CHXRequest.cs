@@ -37,6 +37,30 @@ namespace CHXConverter
             }
         }
 
+        public CHXParameter Find(string key)
+        {
+            return findParameter(key, this.Parameters);
+        }
+
+        protected CHXParameter findParameter(string key, CHXParameter parameter)
+        {
+            if (parameter == null) return null;
+
+            var result = parameter.Find(p => p.Name == key);
+
+            if(result == null)
+            {
+                foreach (var item in parameter)
+                {
+                    result = findParameter(key, item);
+
+                    if (result != null) return result;
+                }
+            }
+
+            return result;
+        }
+
         public CHXRequest()
         {
             _parameters = new CHXParameter();

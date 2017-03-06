@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CHXDataService.Api.CHXApiControllers.Data.Model
 {
-    public class CHXGetAllTables : CHXDataApi, ICHXDataApiModel
+    public class CHXGetAllView : CHXDataApi, ICHXDataApiModel
     {
-        public CHXGetAllTables(ClaimsPrincipal principal) : base(principal)
+        public CHXGetAllView(ClaimsPrincipal principal) : base(principal)
         {
 
         }
@@ -27,19 +27,14 @@ namespace CHXDataService.Api.CHXApiControllers.Data.Model
 
             if (myDatabase == null) return null;
 
-            var resultData = myDatabase.Database.Tables.Where(d => d.SchemaName == schemaName.Value.ToString()).Select(d =>
-            new
-            {
-                name = d.TableName,
-                isspatial = d.IsSpatial
-            });
+            var resultData = myDatabase.Database.Views.Where(d => d.SchemaName == schemaName.Value.ToString()).Select(d => new { name = d.TableName });
 
             return resultData;
         }
 
         public override string GetPermissionName()
         {
-            return "data.getalltables";
+            return "data.getallviews";
         }
     }
 }

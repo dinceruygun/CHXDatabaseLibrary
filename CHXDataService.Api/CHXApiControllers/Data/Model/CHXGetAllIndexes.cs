@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace CHXDataService.Api.CHXApiControllers.Data.Model
 {
-    public class CHXGetAllTables : CHXDataApi, ICHXDataApiModel
+    public class CHXGetAllIndexes: CHXDataApi, ICHXDataApiModel
     {
-        public CHXGetAllTables(ClaimsPrincipal principal) : base(principal)
+        public CHXGetAllIndexes(ClaimsPrincipal principal) : base(principal)
         {
 
         }
@@ -27,11 +27,13 @@ namespace CHXDataService.Api.CHXApiControllers.Data.Model
 
             if (myDatabase == null) return null;
 
-            var resultData = myDatabase.Database.Tables.Where(d => d.SchemaName == schemaName.Value.ToString()).Select(d =>
-            new
-            {
-                name = d.TableName,
-                isspatial = d.IsSpatial
+            var resultData = myDatabase.Database.Indexes.Where(d => d.SchemaName == schemaName.Value.ToString()).Select(d =>
+            new {
+                name = d.IndexName,
+                columnname = d.ColumnName,
+                isunique = d.IsUnique,
+                tablename = d.TableName,
+                schemaname = d.SchemaName
             });
 
             return resultData;
@@ -39,7 +41,7 @@ namespace CHXDataService.Api.CHXApiControllers.Data.Model
 
         public override string GetPermissionName()
         {
-            return "data.getalltables";
+            return "data.getallindexes";
         }
     }
 }

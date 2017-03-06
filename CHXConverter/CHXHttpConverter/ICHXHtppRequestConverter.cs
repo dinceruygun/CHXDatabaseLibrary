@@ -10,6 +10,7 @@ namespace CHXConverter.CHXHttpConverter
     public abstract class ICHXHtppRequestConverter
     {
         public abstract CHXRequest RunInnerMethod(object data);
+        public abstract object RecycleInnerMethod(object data);
 
 
         public CHXRequest Run(object data)
@@ -23,6 +24,23 @@ namespace CHXConverter.CHXHttpConverter
 
             if (result != null)
                 result.Elapsed = stopwatch.Elapsed;
+
+
+            return result;
+        }
+
+
+
+
+
+        public object Recycle(object data)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            var result = RecycleInnerMethod(data);
+
+            stopwatch.Stop();
 
 
             return result;

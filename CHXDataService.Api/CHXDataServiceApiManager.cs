@@ -33,10 +33,11 @@ namespace CHXDataService.Api
             var converter = new CHXConverterManager(CHXConverterType.CHXHttpRequest);
             var requestData = (converter.Convert(request) as CHXRequest);
 
-            ((CHXDataApi)model).Call(requestData);
+            var resultObject = ((CHXDataApi)model).Call(requestData);
 
+            var resultData = converter.Recycle(resultObject, request);
 
-            return "";
+            return resultData.ToString();
             
         }
 
