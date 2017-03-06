@@ -9,40 +9,8 @@ using System.Threading.Tasks;
 
 namespace CHXConverter
 {
-    public abstract class CHXParameterContainer
+    public class CHXParameterContainer : List<CHXParameter>
     {
-        Type _dataType;
-        List<CHXParameter> _itemList;
 
-        public Type DataType
-        {
-            get
-            {
-                return _dataType;
-            }
-
-            set
-            {
-                _dataType = value;
-            }
-        }
-
-        public List<CHXParameter> ItemList
-        {
-            get
-            {
-                return _itemList;
-            }
-
-            set
-            {
-                _itemList = value;
-            }
-        }
-
-        public CHXParameterContainer()
-        {
-            _itemList = new List<CHXParameter>();
-        }
     }
 }

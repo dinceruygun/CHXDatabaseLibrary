@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace CHXDataService.Api
 {
-    public static class CHXApiControllerFactory
+    public static class CHXDataApiControllerFactory
     {
         private static object _locker = new object();
 
-        public static CHXApi GetApiController(string controllerName, ClaimsPrincipal principal)
+        public static CHXDataApi GetApiController(string controllerName, ClaimsPrincipal principal)
         {
             if (controllerName == "data")
             {

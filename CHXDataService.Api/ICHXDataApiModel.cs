@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace CHXDataService.Api
 {
-    public interface ICHXApiController
+    public interface ICHXDataApiModel
     {
-        ICHXApiModel GetModel(string modelName);
+
     }
 }

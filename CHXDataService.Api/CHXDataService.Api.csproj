@@ -44,16 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CHXApiControllerFactory.cs" />
+    <Compile Include="CHXDataApiControllerFactory.cs" />
     <Compile Include="CHXApiControllers\Data\CHXDataController.cs" />
     <Compile Include="CHXApiControllers\Data\Model\CHXGetAllTables.cs" />
+    <Compile Include="CHXDatabaseCollection.cs" />
+    <Compile Include="CHXDatabaseFactory.cs" />
     <Compile Include="CHXDataServiceApiManager.cs" />
-    <Compile Include="CHXApi.cs" />
+    <Compile Include="CHXDataApi.cs" />
     <Compile Include="CHXHttpRequest\CHXContentType.cs" />
     <Compile Include="CHXHttpRequest\CHXContentTypeExtensions.cs" />
     <Compile Include="CHXHttpRequest\CHXMetadata.cs" />
-    <Compile Include="ICHXApiController.cs" />
-    <Compile Include="ICHXApiModel.cs" />
+    <Compile Include="ICHXDataApiController.cs" />
+    <Compile Include="ICHXDataApiModel.cs" />
     <Compile Include="ICHXPermissionControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -61,9 +63,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CHXApiController\CHXApiController.csproj">
+      <Project>{a697e2de-0698-4a35-ae76-e84336c7dd31}</Project>
+      <Name>CHXApiController</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CHXConverter\CHXConverter.csproj">
       <Project>{7ea1822d-2c5d-4c54-9b27-15a6c87071d2}</Project>
       <Name>CHXConverter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CHXDatabaseLibrary\CHXDatabaseLibrary.csproj">
+      <Project>{75eda605-a9e7-45d6-a002-61f2daab9a18}</Project>
+      <Name>CHXDatabaseLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,5 @@
-﻿using CHXConverter;
+﻿using CHXApiController;
+using CHXConverter;
 using CHXDataService.Api.CHXHttpRequest;
 using Nancy;
 using System;
@@ -11,29 +12,37 @@ using System.Threading.Tasks;
 
 namespace CHXDataService.Api
 {
-    public class CHXDataServiceApiManager
+    public class CHXDataServiceApiManager: ICHXApiController
     {
-        public void Call(string controllerName, string modelName, Request request, ClaimsPrincipal principal)
+
+        public CHXDataServiceApiManager()
         {
-            var controller = CHXApiControllerFactory.GetApiController(controllerName, principal);
+            
+        }
+
+
+        public override string Call(string controllerName, string modelName, Request request, ClaimsPrincipal principal)
+        {
+            var controller = CHXDataApiControllerFactory.GetApiController(controllerName, principal);
             control(controller);
 
 
-            var model = ((ICHXApiController)controller).GetModel(modelName);
-            control((CHXApi)model);
-
-
+            var model = ((ICHXDataApiController)controller).GetModel(modelName);
+            control((CHXDataApi)model);
 
             var converter = new CHXConverterManager(CHXConverterType.CHXHttpRequest);
-            var requestData = converter.Convert(request);
+            var requestData = (converter.Convert(request) as CHXRequest);
 
-            ((CHXApi)model).Call("");
+            ((CHXDataApi)model).Call(requestData);
+
+
+            return "";
             
         }
 
 
 
-        protected bool control(CHXApi model)
+        protected bool control(CHXDataApi model)
         {
             if (model == null) throw new KeyNotFoundException();
 

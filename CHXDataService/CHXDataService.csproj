@@ -131,6 +131,7 @@
     <Compile Include="Authentication\PrincipalExtensions.cs" />
     <Compile Include="Authentication\SimpleAuthorizationServerProvider.cs" />
     <Compile Include="Authentication\SimpleRefreshTokenProvider.cs" />
+    <Compile Include="Controller\CHXApiControllerFactory.cs" />
     <Compile Include="HostService.cs" />
     <Compile Include="Modules\IndexModule.cs" />
     <Compile Include="Modules\RegistrationModule.cs" />
@@ -183,6 +184,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CHXApiController\CHXApiController.csproj">
+      <Project>{a697e2de-0698-4a35-ae76-e84336c7dd31}</Project>
+      <Name>CHXApiController</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CHXAuthenticate\CHXAuthenticate.csproj">
       <Project>{1576429f-6fb8-4af3-aed6-a1a13cf03372}</Project>
       <Name>CHXAuthenticate</Name>

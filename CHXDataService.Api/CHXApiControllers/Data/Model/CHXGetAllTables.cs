@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CHXConverter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -7,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace CHXDataService.Api.CHXApiControllers.Data.Model
 {
-    public class CHXGetAllTables : CHXApi, ICHXApiModel
+    public class CHXGetAllTables : CHXDataApi, ICHXDataApiModel
     {
         public CHXGetAllTables(ClaimsPrincipal principal) : base(principal)
         {
 
         }
 
-        public override void Call(object data)
+        public override object Call(CHXRequest data)
         {
-            
+            return null;
         }
 
         public override string GetPermissionName()

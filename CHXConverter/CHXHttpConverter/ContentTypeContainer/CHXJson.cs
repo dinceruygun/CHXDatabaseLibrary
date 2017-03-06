@@ -10,18 +10,21 @@ namespace CHXConverter.CHXHttpConverter.ContentTypeContainer
 {
     public class CHXJson : ICHXHtppRequestConverter
     {
-        public override object Run(string jsonData)
+        public override CHXRequest RunInnerMethod(object jsonData)
         {
-            var parameters = new CHXParameter();
+            if (jsonData == null) return null;
+            if (string.IsNullOrEmpty(jsonData.ToString())) return null;
 
-            foreach (var item in JObject.Parse(jsonData).Children())
+
+
+            var result = new CHXRequest();
+
+            foreach (var item in JObject.Parse(jsonData.ToString())?.Children())
             {
-                parameters.ItemList.Add(parselJsonData(item));
+                result.Parameters.Add(parselJsonData(item));
             }
 
-            
-
-            throw new NotImplementedException();
+            return result;
         }
 
         protected CHXParameter parselJsonData(object jsonElement)
@@ -31,17 +34,25 @@ namespace CHXConverter.CHXHttpConverter.ContentTypeContainer
             if (jsonElement is JProperty)
             {
                 retParameter.Name = (jsonElement as JProperty).Name;
-                retParameter.Value = (jsonElement as JProperty).Value;
-                retParameter.DataType = typeof(CHXProperty);
+
+                if ((jsonElement as JProperty).Value is JValue)
+                {
+                    retParameter.Value = ((jsonElement as JProperty).Value as JValue).Value;
+                    retParameter.DataType = retParameter.Value.GetType();
+                }
+                else
+                {
+                    retParameter.DataType = typeof(CHXProperty);
+                }
 
                 foreach (var item in (jsonElement as JProperty).Children())
                 {
                     var tempParams = parselJsonData(item);
 
                     if (tempParams != null)
-                        if (tempParams.ItemList.Count > 0)
+                        if (tempParams.Count > 0)
                         {
-                            retParameter.ItemList.AddRange(tempParams.ItemList);
+                            retParameter.AddRange(tempParams);
                             retParameter.DataType = typeof(CHXList);
                         }
                 }
@@ -51,7 +62,7 @@ namespace CHXConverter.CHXHttpConverter.ContentTypeContainer
             {
                 foreach (var item in (jsonElement as JObject).Children())
                 {
-                    retParameter.ItemList.Add(parselJsonData(item));
+                    retParameter.Add(parselJsonData(item));
                     retParameter.DataType = typeof(CHXProperty);
                 }
             }
@@ -59,7 +70,7 @@ namespace CHXConverter.CHXHttpConverter.ContentTypeContainer
             {
                 foreach (var item in (jsonElement as JArray).Children())
                 {
-                    retParameter.ItemList.Add(parselJsonData(item));
+                    retParameter.Add(parselJsonData(item));
                     retParameter.DataType = typeof(CHXArray);
                 }
             }

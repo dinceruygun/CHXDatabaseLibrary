@@ -13,6 +13,7 @@ namespace CHXConverter
     {
         object _value;
         string _name;
+        object _dataType;
 
         public object Value
         {
@@ -40,6 +41,19 @@ namespace CHXConverter
             }
         }
 
+        public object DataType
+        {
+            get
+            {
+                return _dataType;
+            }
+
+            set
+            {
+                _dataType = value;
+            }
+        }
+
         public CHXParameter()
         {
 
@@ -47,9 +61,15 @@ namespace CHXConverter
 
         public static implicit operator CHXParameter(CHXValue op)
         {
-            var exVal = new CHXParameter() { Value = op.Value, DataType = op.GetType() };
+            var exVal = new CHXParameter() { Value = op.Value, DataType = op.Value.GetType() };
 
             return exVal;
+        }
+
+
+        public override string ToString()
+        {
+            return $"{this.Name}:{this.Value}";
         }
     }
 }

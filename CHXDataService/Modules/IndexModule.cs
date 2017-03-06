@@ -4,20 +4,17 @@ using System.Collections.Generic;
 using CHXDataService.Api;
 using System.Linq;
 using System;
-
+using CHXDataService.Controller;
+using CHXApiController;
 
 namespace CHXDataService.Modules
 {
     public class IndexModule: SecureModule
     {
 
-        CHXDataServiceApiManager apiManager;
-
 
         public IndexModule()
         {
-
-            apiManager = new CHXDataServiceApiManager();
 
 
             Get[@"/{uri*}"] = parameters =>
@@ -54,16 +51,19 @@ namespace CHXDataService.Modules
                 {
                     return HttpStatusCode.Forbidden;
                 }
-                
 
-                var controller = parameters.controller;
-                var model = parameters.model;
+                var resultData = "";
+
+                var controllerName = parameters.controller;
+                var modelName = parameters.model;
+
+                ICHXApiController controller = CHXApiControllerFactory.GetController(controllerName);
+
+                if(controller!=null)
+                    resultData = controller.Call(controllerName, modelName, this.Request, Principal);
 
 
-                apiManager.Call(controller, model, this.Request, Principal);
-
-
-                return HttpStatusCode.Forbidden;
+                return HttpStatusCode.Found;
 
             };
 
