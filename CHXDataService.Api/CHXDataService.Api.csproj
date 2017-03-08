@@ -48,6 +48,8 @@
     <Compile Include="CHXApiControllers\Data\Model\CHXGetAllIndexes.cs" />
     <Compile Include="CHXApiControllers\Data\Model\CHXGetAllSequences.cs" />
     <Compile Include="CHXApiControllers\Data\Model\CHXGetAllView.cs" />
+    <Compile Include="CHXApiControllers\Data\Model\CHXGetIndex.cs" />
+    <Compile Include="CHXApiControllers\Data\Model\CHXGetSequence.cs" />
     <Compile Include="CHXApiControllers\Data\Model\CHXGetTable.cs" />
     <Compile Include="CHXApiControllers\Data\Model\CHXGetView.cs" />
     <Compile Include="CHXApiControllers\Data\Model\GetConstraint.cs" />

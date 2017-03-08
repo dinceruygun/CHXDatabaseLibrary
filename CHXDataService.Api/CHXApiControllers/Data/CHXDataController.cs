@@ -40,6 +40,10 @@ namespace CHXDataService.Api.CHXApiControllers.Data
                     return new Model.CHXGetView(base.Principal);
                 case "getconstraint":
                     return new Model.GetConstraint(base.Principal);
+                case "getindex":
+                    return new Model.CHXGetIndex(base.Principal);
+                case "getsequence":
+                    return new Model.CHXGetSequence(base.Principal);
                 default:
                     return null;
             }

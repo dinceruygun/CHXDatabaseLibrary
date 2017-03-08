@@ -52,6 +52,8 @@ namespace CHXAuthenticate
             claims.Add(new Claim() { Type = "data.gettable", Value = "true", Id = 7 });
             claims.Add(new Claim() { Type = "data.getview", Value = "true", Id = 8 });
             claims.Add(new Claim() { Type = "data.getconstraint", Value = "true", Id = 9 });
+            claims.Add(new Claim() { Type = "data.getindex", Value = "true", Id = 10 });
+            claims.Add(new Claim() { Type = "data.getsequence", Value = "true", Id = 11 });
 
             // And return the UserIdentity:
             identity = Convert(user, claims);
