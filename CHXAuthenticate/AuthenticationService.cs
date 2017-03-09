@@ -55,6 +55,9 @@ namespace CHXAuthenticate
             claims.Add(new Claim() { Type = "data.getindex", Value = "true", Id = 10 });
             claims.Add(new Claim() { Type = "data.getsequence", Value = "true", Id = 11 });
 
+            claims.Add(new Claim() { Type = "settings", Value = "true", Id = 11 });
+            claims.Add(new Claim() { Type = "settings.adddatabase", Value = "true", Id = 11 });
+
             // And return the UserIdentity:
             identity = Convert(user, claims);
 

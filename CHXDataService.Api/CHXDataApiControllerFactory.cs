@@ -17,6 +17,10 @@ namespace CHXDataService.Api
             {
                 return new CHXApiControllers.Data.CHXDataController(principal);
             }
+            else if (controllerName == "settings")
+            {
+                return new CHXApiControllers.Settings.CHXSettingsController(principal);
+            }
             else { return null; }
         }
     }

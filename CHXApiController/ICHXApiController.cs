@@ -10,7 +10,7 @@ namespace CHXApiController
 {
     public abstract class ICHXApiController
     {
-        public abstract string Call(string controllerName, string modelName, Request request, ClaimsPrincipal principal);
+        public abstract string Call(string controllerName, string modelName, Request request, ClaimsPrincipal principal, string method);
 
         public string ControlName { get; set; }
     }

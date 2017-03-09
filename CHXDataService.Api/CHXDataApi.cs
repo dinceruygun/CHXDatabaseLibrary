@@ -12,7 +12,7 @@ namespace CHXDataService.Api
     {
         public abstract string GetPermissionName();
         ClaimsPrincipal _principal;
-        public abstract object Call(CHXRequest data);
+        public abstract object Call(CHXRequest data, string method);
         public int ModelName { get; set; }
 
 

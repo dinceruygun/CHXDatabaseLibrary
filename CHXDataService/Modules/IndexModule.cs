@@ -33,57 +33,71 @@ namespace CHXDataService.Modules
             };
 
 
-
-            Get["/"] = _ =>
+            Put["/{controller}/{model}"] = parameters =>
             {
-                if (!IsAuthenticated)
-                {
-                    return HttpStatusCode.Forbidden;
-                }
-
-                return "Hello User!";
+                return CallMethod(parameters, "put");
             };
 
 
+
+            Get["/{controller}/{model}"] = parameters =>
+            {
+                return CallMethod(parameters, "get");
+            };
+
+            
 
             Post["/{controller}/{model}"] = parameters =>
             {
-                var stopwatch = new Stopwatch();
-                stopwatch.Start();
-
-
-
-                if (!IsAuthenticated)
-                {
-                    return HttpStatusCode.Forbidden;
-                }
-
-                var resultData = "";
-
-                var controllerName = parameters.controller;
-                var modelName = parameters.model;
-
-                ICHXApiController controller = CHXApiControllerFactory.GetController(controllerName);
-
-                if (controller != null)
-                {
-                    resultData = controller.Call(controllerName, modelName, this.Request, Principal);
-                }
-
-
-                if (resultData != null)
-                {
-                    return GetResponseData(resultData, ref stopwatch);
-                }
-
-
-                stopwatch.Stop();
-
-                return HttpStatusCode.Found;
+                return CallMethod(parameters, "post");
 
             };
 
+
+            
+
         }
+
+
+
+
+        private object CallMethod(dynamic parameters, string method)
+        {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+
+
+            if (!IsAuthenticated)
+            {
+                return HttpStatusCode.Forbidden;
+            }
+
+            var resultData = "";
+
+            var controllerName = parameters.controller;
+            var modelName = parameters.model;
+
+            ICHXApiController controller = CHXApiControllerFactory.GetController(controllerName);
+
+            if (controller != null)
+            {
+                resultData = controller.Call(controllerName, modelName, this.Request, Principal, method);
+            }
+
+
+            if (resultData != null)
+            {
+                return GetResponseData(resultData, ref stopwatch);
+            }
+
+
+            stopwatch.Stop();
+
+            return HttpStatusCode.Found;
+        }
+
+
 
 
         protected string GetResponseData(string data, ref Stopwatch stopwatch)

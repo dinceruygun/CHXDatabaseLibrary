@@ -53,6 +53,8 @@
     <Compile Include="CHXApiControllers\Data\Model\CHXGetTable.cs" />
     <Compile Include="CHXApiControllers\Data\Model\CHXGetView.cs" />
     <Compile Include="CHXApiControllers\Data\Model\GetConstraint.cs" />
+    <Compile Include="CHXApiControllers\Settings\CHXSettingsController.cs" />
+    <Compile Include="CHXApiControllers\Settings\Model\CHXAddDatabase.cs" />
     <Compile Include="CHXDataApiControllerFactory.cs" />
     <Compile Include="CHXApiControllers\Data\CHXDataController.cs" />
     <Compile Include="CHXApiControllers\Data\Model\CHXGetAllTables.cs" />
@@ -63,6 +65,11 @@
     <Compile Include="CHXHttpRequest\CHXContentType.cs" />
     <Compile Include="CHXHttpRequest\CHXContentTypeExtensions.cs" />
     <Compile Include="CHXHttpRequest\CHXMetadata.cs" />
+    <Compile Include="CHXSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CHXSettings.resx</DependentUpon>
+    </Compile>
     <Compile Include="ICHXDataApiController.cs" />
     <Compile Include="ICHXDataApiModel.cs" />
     <Compile Include="ICHXPermissionControl.cs" />
@@ -85,6 +92,13 @@
       <Name>CHXDatabaseLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CHXSettings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CHXSettings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

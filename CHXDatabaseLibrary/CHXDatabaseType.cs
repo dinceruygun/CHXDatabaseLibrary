@@ -8,6 +8,9 @@ namespace CHXDatabaseLibrary
 {
     public enum CHXDatabaseType
     {
-        PostgreSql = 1
+        PostgreSql = 1,
+        Oracle = 2,
+        ElasticSearch = 3,
+        MySql = 4
     }
 }

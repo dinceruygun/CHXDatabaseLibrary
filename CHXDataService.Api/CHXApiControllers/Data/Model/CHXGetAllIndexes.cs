@@ -15,7 +15,7 @@ namespace CHXDataService.Api.CHXApiControllers.Data.Model
 
         }
 
-        public override object Call(CHXRequest data)
+        public override object Call(CHXRequest data, string method)
         {
             var serverName = data.Find("server");
             var schemaName = data.Find("schema");

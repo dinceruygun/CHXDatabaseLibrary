@@ -26,6 +26,9 @@ namespace CHXDataService.Controller
                         case "data":
                             controller = new CHXDataServiceApiManager();
                             break;
+                        case "settings":
+                            controller = new CHXDataServiceApiManager();
+                            break;
                         default:
                             break;
                     }

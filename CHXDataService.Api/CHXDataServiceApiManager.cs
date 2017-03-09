@@ -21,7 +21,7 @@ namespace CHXDataService.Api
         }
 
 
-        public override string Call(string controllerName, string modelName, Request request, ClaimsPrincipal principal)
+        public override string Call(string controllerName, string modelName, Request request, ClaimsPrincipal principal, string method)
         {
             var controller = CHXDataApiControllerFactory.GetApiController(controllerName, principal);
             control(controller);
@@ -33,7 +33,7 @@ namespace CHXDataService.Api
             var converter = new CHXConverterManager(CHXConverterType.CHXHttpRequest);
             var requestData = (converter.Convert(request) as CHXRequest);
 
-            var resultObject = ((CHXDataApi)model).Call(requestData);
+            var resultObject = ((CHXDataApi)model).Call(requestData, method);
 
             var resultData = converter.Recycle(resultObject, request);
 

@@ -15,7 +15,7 @@ namespace CHXDataService.Api.CHXApiControllers.Data
 
         }
 
-        public override object Call(CHXRequest data)
+        public override object Call(CHXRequest data, string method)
         {
             return null;
         }
