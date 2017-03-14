@@ -57,6 +57,9 @@ namespace CHXAuthenticate
 
             claims.Add(new Claim() { Type = "settings", Value = "true", Id = 11 });
             claims.Add(new Claim() { Type = "settings.adddatabase", Value = "true", Id = 11 });
+            claims.Add(new Claim() { Type = "settings.getalldatabase", Value = "true", Id = 12 });
+            claims.Add(new Claim() { Type = "settings.deletedatabase", Value = "true", Id = 13 });
+
 
             // And return the UserIdentity:
             identity = Convert(user, claims);

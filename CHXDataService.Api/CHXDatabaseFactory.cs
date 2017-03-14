@@ -7,12 +7,31 @@ using System.Reflection;
 using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
+using CHXConverter;
 
 namespace CHXDataService.Api
 {
+    public class CHXDatabaseSettingsList : List<CHXDatabaseSettings> { }
+
+    public class CHXDatabaseSettings
+    {
+        public string name { get; set; }
+        public CHXDatabaseParameters parameters { get; set; }
+        public CHXDatabaseType? type { get; set; }
+    }
+
     public static class CHXDatabaseFactory
     {
         private static object _locker = new object();
+
+        public static void DeleteDatabase(string name)
+        {
+            lock (_locker)
+            {
+                _databaseCollection.DatabaseList.Remove(_databaseCollection.DatabaseList.Find(d => d.Name == name));
+            }
+        }
+
         private static CHXDatabaseCollection _databaseCollection;
 
         public static CHXDatabaseCollection DatabaseCollection
@@ -36,28 +55,33 @@ namespace CHXDataService.Api
 
         private static void Load()
         {
-            //DatabaseCollection = JsonConvert.DeserializeObject<CHXDatabaseCollection>("");
+            _databaseCollection = new CHXDatabaseCollection();
+
+            var settings = CHXSettings.CHXSettingsManager.Get("databaselist");
+
+            if (settings == null) return;
+
+            var convertList = JsonConvert.DeserializeObject<CHXDatabaseSettingsList>(settings);
+
+            foreach (var item in convertList)
+            {
+                _databaseCollection.Add(new CHXDatabaseContainer() { Name = item.name, Database = new CHXDatabaseManager(new CHXDatabase(item.parameters, item.type)) });
+            }
+
         }
 
         private static void Save()
         {
             var data = JsonConvert.SerializeObject(DatabaseCollection.DatabaseList.Select(d =>
-                        new
+                        new CHXDatabaseSettings()
                         {
                             name = d.Name,
                             parameters = d.Database.Database.ConnectionParameters,
                             type = d.Database.Database.DatabaseType
-                        }), Formatting.None,
-                        new JsonSerializerSettings()
-                        {
-                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                        });
+                        }));
 
 
-            IResourceWriter writer = new ResourceWriter("CHXDataService.Api.CHXSettings");
-            writer.AddResource("CHXDatabaseList", data);
-            writer.Generate();
-            writer.Close();
+            CHXSettings.CHXSettingsManager.Set("databaselist", data);
         }
 
 
@@ -108,4 +132,8 @@ namespace CHXDataService.Api
             return DatabaseCollection[databaseName];
         }
     }
+
+
+
+   
 }

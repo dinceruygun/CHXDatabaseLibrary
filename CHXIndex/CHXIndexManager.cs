@@ -165,6 +165,25 @@ namespace CHXIndex
             return booleanQuery;
         }
 
+        public void Index(Dictionary<string, string> values)
+        {
+            if (values == null) return;
+
+            var doc = new Document();
+
+            foreach (var value in values)
+            {
+                if (!doc.GetFields().Select(f => f.Name == value.Key).FirstOrDefault())
+                {
+                    doc.Add(new Field(value.Key, value.Value, Field.Store.YES, Field.Index.ANALYZED));
+                }
+            }
+
+            Writer.AddDocument(doc);
+
+            Writer.Optimize();
+            Writer.Commit();
+        }
 
         public void Index(string name, string value)
         {
@@ -191,6 +210,15 @@ namespace CHXIndex
         }
 
 
+        public void Delete(CHXFilters filters)
+        {
+            var query = FilterToQuery(filters);
+            if (query == null) return;
+            Writer.DeleteDocuments(query);
+
+            Writer.Optimize();
+            Writer.Commit();
+        }
 
 
 

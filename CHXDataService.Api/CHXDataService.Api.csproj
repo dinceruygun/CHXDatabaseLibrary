@@ -59,6 +59,8 @@
     <Compile Include="CHXApiControllers\Data\Model\GetConstraint.cs" />
     <Compile Include="CHXApiControllers\Settings\CHXSettingsController.cs" />
     <Compile Include="CHXApiControllers\Settings\Model\CHXAddDatabase.cs" />
+    <Compile Include="CHXApiControllers\Settings\Model\CHXDeleteDatabase.cs" />
+    <Compile Include="CHXApiControllers\Settings\Model\CHXGetAllDatabase.cs" />
     <Compile Include="CHXDataApiControllerFactory.cs" />
     <Compile Include="CHXApiControllers\Data\CHXDataController.cs" />
     <Compile Include="CHXApiControllers\Data\Model\CHXGetAllTables.cs" />
@@ -69,11 +71,6 @@
     <Compile Include="CHXHttpRequest\CHXContentType.cs" />
     <Compile Include="CHXHttpRequest\CHXContentTypeExtensions.cs" />
     <Compile Include="CHXHttpRequest\CHXMetadata.cs" />
-    <Compile Include="CHXSettings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CHXSettings.resx</DependentUpon>
-    </Compile>
     <Compile Include="ICHXDataApiController.cs" />
     <Compile Include="ICHXDataApiModel.cs" />
     <Compile Include="ICHXPermissionControl.cs" />
@@ -95,12 +92,10 @@
       <Project>{75eda605-a9e7-45d6-a002-61f2daab9a18}</Project>
       <Name>CHXDatabaseLibrary</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="CHXSettings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>CHXSettings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <ProjectReference Include="..\CHXSettings\CHXSettings.csproj">
+      <Project>{e6dfd254-7947-4a4b-a062-a0d5f751d0d9}</Project>
+      <Name>CHXSettings</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

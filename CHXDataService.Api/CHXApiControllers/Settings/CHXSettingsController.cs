@@ -26,6 +26,10 @@ namespace CHXDataService.Api.CHXApiControllers.Settings
             {
                 case "adddatabase":
                     return new Model.CHXAddDatabase(base.Principal);
+                case "getalldatabase":
+                    return new Model.CHXGetAllDatabase(base.Principal);
+                case "deletedatabase":
+                    return new Model.CHXDeleteDatabase(base.Principal);
                 default:
                     return null;
             }
