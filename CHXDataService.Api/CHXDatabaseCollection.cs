@@ -32,6 +32,18 @@ namespace CHXDataService.Api
             }
         }
 
+
+        public void Add(CHXDatabaseContainer database)
+        {
+            if (database == null) return;
+
+            if (this[database.Name] == null)
+            { 
+                databaseList.Add(database);
+            }
+        }
+
+
         public CHXDatabaseContainer Add(string databaseName, CHXDatabaseParameters connectionParameters, CHXDatabaseType databaseType)
         {
             CHXDatabaseContainer db = null;
@@ -41,7 +53,7 @@ namespace CHXDataService.Api
                 db = new CHXDatabaseContainer() { Name = databaseName };
                 db.Database = new CHXDatabaseManager(new CHXDatabase(connectionParameters, databaseType));
 
-                databaseList.Add(db);
+                this.Add(db);
             }
 
             return db;
@@ -56,7 +68,7 @@ namespace CHXDataService.Api
             {
                 db = new CHXDatabaseContainer() { Name = databaseName };
 
-                databaseList.Add(db);
+                this.Add(db);
             }
 
             return db;
@@ -84,6 +96,19 @@ namespace CHXDataService.Api
             get
             {
                 throw new NotImplementedException();
+            }
+        }
+
+        public List<CHXDatabaseContainer> DatabaseList
+        {
+            get
+            {
+                return databaseList;
+            }
+
+            set
+            {
+                databaseList = value;
             }
         }
 

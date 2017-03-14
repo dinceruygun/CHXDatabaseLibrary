@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6FDB67B3-6F33-4C77-9250-8059676E9B9E}</ProjectGuid>
+    <ProjectGuid>{7623D1D6-F21B-4C31-A654-4DF7F828D01E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Test</RootNamespace>
-    <AssemblyName>Test</AssemblyName>
+    <RootNamespace>TestSettings</RootNamespace>
+    <AssemblyName>TestSettings</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -49,10 +49,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CHXDatabaseLibrary\CHXDatabaseLibrary.csproj">
-      <Project>{75eda605-a9e7-45d6-a002-61f2daab9a18}</Project>
-      <Name>CHXDatabaseLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CHXSettings\CHXSettings.csproj">
       <Project>{e6dfd254-7947-4a4b-a062-a0d5f751d0d9}</Project>
       <Name>CHXSettings</Name>

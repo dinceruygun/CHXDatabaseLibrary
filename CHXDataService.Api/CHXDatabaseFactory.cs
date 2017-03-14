@@ -1,6 +1,10 @@
-﻿using System;
+﻿using CHXDatabaseLibrary;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,8 +34,61 @@ namespace CHXDataService.Api
             }
         }
 
+        private static void Load()
+        {
+            //DatabaseCollection = JsonConvert.DeserializeObject<CHXDatabaseCollection>("");
+        }
+
+        private static void Save()
+        {
+            var data = JsonConvert.SerializeObject(DatabaseCollection.DatabaseList.Select(d =>
+                        new
+                        {
+                            name = d.Name,
+                            parameters = d.Database.Database.ConnectionParameters,
+                            type = d.Database.Database.DatabaseType
+                        }), Formatting.None,
+                        new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        });
+
+
+            IResourceWriter writer = new ResourceWriter("CHXDataService.Api.CHXSettings");
+            writer.AddResource("CHXDatabaseList", data);
+            writer.Generate();
+            writer.Close();
+        }
+
+
+        public static void AddDatabase(string databaseName, CHXDatabaseParameters connectionParameters, CHXDatabaseType databaseType)
+        {
+            lock (_locker)
+            {
+                var db = new CHXDatabaseContainer() { Name = databaseName };
+                db.Database = new CHXDatabaseManager(new CHXDatabase(connectionParameters, databaseType));
+
+                AddDatabase(db);
+            }
+        }
+
+
+        public static void AddDatabase(CHXDatabaseContainer database)
+        {
+            lock (_locker)
+            {
+                DatabaseCollection.Add(database);
+                Save();
+            }
+        }
+
         static CHXDatabaseFactory()
         {
+            Load();
+
+
+            return;
+
             var parameters = new CHXDatabaseLibrary.CHXDatabaseParameters();
 
             parameters.Add("Server", "192.168.2.188");
