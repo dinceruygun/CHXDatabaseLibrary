@@ -57,6 +57,8 @@
     <Compile Include="CHXApiControllers\Data\Model\CHXGetTable.cs" />
     <Compile Include="CHXApiControllers\Data\Model\CHXGetView.cs" />
     <Compile Include="CHXApiControllers\Data\Model\GetConstraint.cs" />
+    <Compile Include="CHXApiControllers\Model\CHXModelController.cs" />
+    <Compile Include="CHXApiControllers\Model\Model\CHXQuery.cs" />
     <Compile Include="CHXApiControllers\Settings\CHXSettingsController.cs" />
     <Compile Include="CHXApiControllers\Settings\Model\CHXAddDatabase.cs" />
     <Compile Include="CHXApiControllers\Settings\Model\CHXDeleteDatabase.cs" />

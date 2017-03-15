@@ -21,6 +21,10 @@ namespace CHXDataService.Api
             {
                 return new CHXApiControllers.Settings.CHXSettingsController(principal);
             }
+            else if (controllerName == "model")
+            {
+                return new CHXApiControllers.Model.CHXQueryController(principal);
+            }
             else { return null; }
         }
     }

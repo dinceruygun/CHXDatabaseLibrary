@@ -10,6 +10,7 @@ namespace CHXConverter
     {
         CHXParameter _parameters;
         TimeSpan _elapsed;
+        string _data;
 
         public CHXParameter Parameters
         {
@@ -34,6 +35,19 @@ namespace CHXConverter
             set
             {
                 _elapsed = value;
+            }
+        }
+
+        public string Data
+        {
+            get
+            {
+                return _data;
+            }
+
+            set
+            {
+                _data = value;
             }
         }
 

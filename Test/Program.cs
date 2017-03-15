@@ -15,7 +15,7 @@ namespace Test
 
             parameters.Add("Server", "192.168.2.188");
             parameters.Add("Port", "5432");
-            parameters.Add("Database", "kbb_test");
+            parameters.Add("Database", "atakumgis");
             parameters.Add("User Id", "postgres");
             parameters.Add("Password", "ntc123*");
 
@@ -25,25 +25,10 @@ namespace Test
 
 
 
-            //foreach (var cons in manager.Constraints)
-            //{
-
-            //}
-
-            foreach (var table in manager.Views)
-            {
-                Console.WriteLine(table.ToString());
-                Console.WriteLine(table.DependsTableList.Count.ToString());
-            }
+            var result = manager.RunQuery<string>(@"{ ""server"": ""kbb2"", ""schema"": ""public"", ""query"": { ""geoyol"": { ""type"": ""table"", ""addgeometry"": true, ""field"": [ ""objectid"", ""yol_adi"" ], ""find"": [ { ""yol_tipi_id"": 4, ""yol_turu_id"": 5 }, { ""yol_turu_id"": 4 } ] }, ""kod_yol_turu"": { ""type"": ""table"", ""field"": [ ""adi => yol_turu"" ] }, ""kod_yol_tipi"": { ""type"": ""table"", ""field"": [ ""adi => yol_tipi"" ] } }, ""join"": { ""inner"": [ { ""geoyol.yol_turu_id"": ""kod_yol_turu.objectid"" } ], ""left"": [ { ""geoyol.yol_tipi_id"": ""kod_yol_tipi.objectid"" } ] }, ""group"": [ ""geoyol.yol_adi"", ""kod_yol_turu.adi"" ] }", 
+                                                    CHXDatabaseLibrary.CHXQueryType.Json);
 
 
-            //foreach (var seq in manager.Sequences)
-            //{
-            //    var i = seq.CurrentValue;
-            //}
-
-
-            Console.ReadKey(true);
         }
     }
 }

@@ -92,6 +92,7 @@
     <Compile Include="CHXDatabaseParameters.cs" />
     <Compile Include="CHXDatabaseType.cs" />
     <Compile Include="CHXQuery.cs" />
+    <Compile Include="CHXQueryType.cs" />
     <Compile Include="DatabaseCommands\CHXDatabaseCommandFactory.cs" />
     <Compile Include="DatabaseCommands\ICHXDatabaseCommand.cs" />
     <Compile Include="DatabaseCommands\PostgreSql\PostgreSql.cs" />
@@ -112,6 +113,10 @@
     <Compile Include="DatabaseFeatures\ICHXDatabaseFeature.cs" />
     <Compile Include="ICHXDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryConverter\CHXQueryConverterFactory.cs" />
+    <Compile Include="QueryConverter\ICHXQueryConverter.cs" />
+    <Compile Include="QueryConverter\Json\CHXJsonQueryConverter.cs" />
+    <Compile Include="QueryConverter\QueryContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

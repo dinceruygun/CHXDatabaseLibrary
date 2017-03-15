@@ -42,7 +42,7 @@ namespace CHXDatabaseLibrary
             }
         }
 
-
+        
 
         public CHXTableCollection Tables
         {
@@ -163,6 +163,18 @@ namespace CHXDatabaseLibrary
         public IEnumerable<T> RunQuery<T>(CHXQuery query)
         {
             return Database.Connection.RunQuery<T>(query);
+        }
+
+
+        public object RunQuery<T>(T data, CHXQueryType queryType)
+        {
+            var converter = QueryConverter.CHXQueryConverterFactory.GetQueryConverter(queryType);
+
+            if (converter == null) throw new Exception("geçerli bir query type değil");
+
+
+
+            return converter.Convert<T>(data);
         }
 
     }

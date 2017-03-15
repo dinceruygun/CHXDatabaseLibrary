@@ -36,6 +36,8 @@ namespace CHXConverter.CHXHttpConverter.ContentTypeContainer
                 result.Parameters.Add(parselJsonData(item));
             }
 
+            result.Data = jsonData.ToString();
+
             return result;
         }
 
