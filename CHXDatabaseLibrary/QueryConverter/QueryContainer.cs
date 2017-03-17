@@ -10,10 +10,62 @@ namespace CHXDatabaseLibrary.QueryConverter
 {
     public class QueryContainer
     {
+        private string _sql;
+
         public string Server { get; set; }
         public string Schema { get; set; }
         public QueryCollection Query { get; set; }
+        public List<QueryJoin> Join { get; set; }
+        public List<string> Group { get; set; }
+        object _parameter;
+        public bool AddGeometry { get; set; }
+        public string GeometryTable { get; set; }
+        public string GeometryColumn { get; set; }
+        public string GeometryTableSchema { get; set; }
 
+
+        public string Sql
+        {
+            get
+            {
+                if(_sql == null)
+                {
+                    _sql = this.Database.Connection.ToSql(this, false);
+                }
+
+                return _sql;
+            }
+        }
+
+        public CHXDatabase Database { get; internal set; }
+
+        public object Parameter
+        {
+            get
+            {
+                if (_parameter == null)
+                {
+                    _parameter = this.Database.Connection.ToParameter(this);
+                }
+
+                return _parameter;
+            }
+        }
+    }
+
+
+
+    [DebuggerDisplay("{ToString()}")]
+    public class QueryJoin
+    {
+        public JoinType joinType { get; set; }
+        public string Destination { get; set; }
+        public string Target { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Destination}={Target}";
+        }
     }
 
 
@@ -104,12 +156,12 @@ namespace CHXDatabaseLibrary.QueryConverter
         }
     }
 
-
-
     public class QueryFindList : List<QueryFind> { }
 
+    [DebuggerDisplay("{ToString()}")]
     public class QueryFind
     {
+        int _id;
         string _name;
         object _value;
 
@@ -139,20 +191,33 @@ namespace CHXDatabaseLibrary.QueryConverter
             }
         }
 
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+        }
 
         public QueryFind()
         {
 
         }
 
-        public QueryFind(string name, object value)
+        public QueryFind(string name, object value, int id)
         {
             _name = name;
             _value = value;
+
+            _id = id;
         }
+
+        public override string ToString()
+        {
+            return $"{this.Name}:{this.Value}";
+        }
+
     }
-
-
 
     [DebuggerDisplay("{ToString()}")]
     public class QueryField
@@ -213,5 +278,13 @@ namespace CHXDatabaseLibrary.QueryConverter
     public class QueryCollection : List<QueryTable>
     {
 
+    }
+
+
+    public enum JoinType
+    {
+        INNER = 1,
+        LEFT = 2,
+        RIGHT = 3
     }
 }

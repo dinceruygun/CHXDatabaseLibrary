@@ -21,6 +21,10 @@ namespace CHXDatabaseLibrary
         CommandType? _commandType;
         string _queryName;
 
+        public bool AddGeometry { get; set; }
+        public string GeometryColumn { get; set; }
+
+
 
 
         public string Sql

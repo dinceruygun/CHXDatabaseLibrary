@@ -32,9 +32,10 @@ namespace CHXDataService.Api.CHXApiControllers.Model.Model
             if (mydb == null) throw new NullReferenceException($"{_server.Value.ToString()} isimli veri tabanı bulunamadı");
 
 
-            var result = mydb.Database.RunQuery<string>(data.Data, CHXDatabaseLibrary.CHXQueryType.Json);
+            var query = mydb.Database.ConvertQuery<string>(data.Data, CHXDatabaseLibrary.CHXQueryType.Json);
+            var result = mydb.Database.RunQuery<dynamic>(query);
 
-            return null;
+            return result;
         }
 
         public override string GetPermissionName()

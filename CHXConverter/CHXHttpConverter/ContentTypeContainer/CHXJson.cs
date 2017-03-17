@@ -15,11 +15,7 @@ namespace CHXConverter.CHXHttpConverter.ContentTypeContainer
     {
         public override object RecycleInnerMethod(object data)
         {
-            return JsonConvert.SerializeObject(data, Formatting.None,
-                        new JsonSerializerSettings()
-                        {
-                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                        });
+            return JsonConvert.SerializeObject(data);
         }
 
         public override CHXRequest RunInnerMethod(object jsonData)

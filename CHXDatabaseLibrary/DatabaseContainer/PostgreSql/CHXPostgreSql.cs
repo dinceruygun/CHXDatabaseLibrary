@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CHXDatabaseLibrary.QueryConverter;
 
 namespace CHXDatabaseLibrary.DatabaseContainer.PostgreSql
 {
@@ -135,7 +136,131 @@ namespace CHXDatabaseLibrary.DatabaseContainer.PostgreSql
 
         public override IEnumerable<T> RunQuery<T>(CHXQuery query)
         {
-            return Connection.Query<T>(query.Sql, query.Parameter, query.Transaction, query.Buffered, query.CommandTimeout, query.CommandType);
+            var result = Connection.Query<T>(query.Sql, query.Parameter, query.Transaction, query.Buffered, query.CommandTimeout, query.CommandType);
+
+            if (typeof(T).Name == "Object")
+            {
+                foreach (var row in result)
+                {
+                    foreach (var col in (row as IDictionary<string, object>))
+                    {
+
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public override string ToSql(QueryContainer queryContainer, bool addParameter)
+        {
+            var fields = new StringBuilder();
+            string firstTable = null;
+            var join = new StringBuilder();
+            var where = new StringBuilder();
+            var group = new StringBuilder();
+            
+            if (queryContainer == null) return null;
+            if (queryContainer.Query == null) return null;
+
+            foreach (var q in queryContainer.Query)
+            {
+                if (fields.Length > 0) fields.Append(", ");
+
+                fields.Append(string.Join(", ", q.Field.Select(f => f.Alias == null ? $"{q.TableName}.{f.Name}" : $"{q.TableName}.{f.Name} as {f.Alias}").ToArray()));
+
+                if (q.AddGeometry)
+                {
+                    var table = this.DatabaseManager.Tables.Find(t => t.TableName == q.TableName && t.SchemaName == queryContainer.Schema);
+                    if (table.IsSpatial && table.GeometryColumn != null)
+                    {
+                        fields.Append($", st_astext({table.GeometryColumn.Name}) as {table.GeometryColumn.Name}");
+                        //fields.Append($", st_asgeojson({table.GeometryColumn.Name}) as {table.GeometryColumn.Name}");
+                    }
+                }
+
+
+                if (string.IsNullOrEmpty(firstTable)) firstTable = q.TableName;
+
+
+                if (where.Length > 0 && q.QueryFind != null)
+                    if (q.QueryFind.Count > 0)
+                        where.Append(" and ");
+
+                where.Append(string.Join(" or ", q.QueryFind.Select(
+                    f =>
+                    "(" + string.Join(" and ", f.Select(
+                        c =>
+                            addParameter == true ? $"{q.TableName}.{c.Name} = {c.Value}" :
+                            $"{q.TableName}.{c.Name} = @{c.Name}{c.Id}"
+                        )
+                        ) + ")"
+                        )));
+            }
+
+
+            if (queryContainer.Join != null)
+            {
+                foreach (var j in queryContainer.Join)
+                {
+                    switch (j.joinType)
+                    {
+                        case JoinType.INNER:
+                            join.Append(" inner join ");
+                            break;
+                        case JoinType.LEFT:
+                            join.Append(" left join ");
+                            break;
+                        case JoinType.RIGHT:
+                            join.Append(" right join ");
+                            break;
+                        default:
+                            break;
+                    }
+
+
+                    join.Append(j.Destination.Split('.')[0]);
+                    join.Append(" on ");
+                    join.Append(j.Destination);
+                    join.Append(" = ");
+                    join.Append(j.Target);
+                }
+            }
+
+
+
+            if (queryContainer.Group != null)
+            {
+                if (queryContainer.Group.Count > 0)
+                {
+                    group.Append(" group by ");
+                    group.Append(string.Join(", ", queryContainer.Group.Select(g => g.ToString()).ToArray()));
+                }
+            }
+
+
+            var sql = $"select {fields.ToString()} from {firstTable} {join.ToString()} where {where.ToString()} {group}";
+
+
+            return sql;
+        }
+
+        public override object ToParameter(QueryContainer queryContainer)
+        {
+            var dbArgs = new DynamicParameters();
+
+            foreach (var q in queryContainer.Query)
+            {
+                foreach (var p in q.QueryFind)
+                {
+                    foreach (var v in p)
+                    {
+                        dbArgs.Add($"{v.Name}{v.Id}", v.Value);
+                    }
+                }
+            }
+
+            return dbArgs;
         }
     }
 }

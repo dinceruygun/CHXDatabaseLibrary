@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CHXDatabaseLibrary.DatabaseFeatures;
 using System.Data;
+using CHXDatabaseLibrary.QueryConverter;
 
 namespace CHXDatabaseLibrary
 {
@@ -141,6 +142,7 @@ namespace CHXDatabaseLibrary
         public CHXDatabaseManager(CHXDatabase database)
         {
             _database = database;
+            _database.DatabaseManager = this;
 
             Init();
         }
@@ -162,19 +164,40 @@ namespace CHXDatabaseLibrary
 
         public IEnumerable<T> RunQuery<T>(CHXQuery query)
         {
-            return Database.Connection.RunQuery<T>(query);
+            var result = Database.Connection.RunQuery<T>(query);
+
+            
+
+            return result;
         }
 
 
-        public object RunQuery<T>(T data, CHXQueryType queryType)
+        public IEnumerable<T> RunQuery<T>(QueryContainer queryContainer)
+        {
+            if (queryContainer.Database.DatabaseType != this.Database.DatabaseType) throw new Exception("Hedef veri tabanı tipi ve sorgu veri tabanı tipi uyumsuz.");
+
+            var query = new CHXQuery();
+            query.Sql = queryContainer.Sql;
+            query.Parameter = queryContainer.Parameter;
+
+
+            return this.RunQuery<T>(query);
+        }
+
+
+        public QueryContainer ConvertQuery<T>(T data, CHXQueryType queryType)
         {
             var converter = QueryConverter.CHXQueryConverterFactory.GetQueryConverter(queryType);
 
             if (converter == null) throw new Exception("geçerli bir query type değil");
 
+            var result = converter.Convert<T>(data);
 
+            if (result.AddGeometry) result.GeometryColumn = Tables.Find(t => t.TableName == result.GeometryTable && t.SchemaName == result.GeometryTableSchema).GeometryColumn.Name;
 
-            return converter.Convert<T>(data);
+            result.Database = this.Database;
+
+            return result;
         }
 
     }

@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CHXDatabaseLibrary.QueryConverter;
 
 namespace CHXDatabaseLibrary
 {
@@ -19,8 +20,11 @@ namespace CHXDatabaseLibrary
         public abstract void Init();
         public abstract bool CheckSpatial();
         public abstract IEnumerable<T> RunQuery<T>(CHXQuery query);
+        public abstract string ToSql(QueryContainer queryContainer, bool addParameter);
+        public abstract object ToParameter(QueryContainer queryContainer);
 
 
+        public CHXDatabaseManager DatabaseManager { get; set; }
 
         public CHXDatabaseParameters ConnectionParameters
         {
@@ -35,6 +39,8 @@ namespace CHXDatabaseLibrary
             }
         }
 
+        
+
         public string Version
         {
             get
@@ -47,6 +53,8 @@ namespace CHXDatabaseLibrary
                 _version = value;
             }
         }
+
+        
 
         internal CHXDatabaseConnection(CHXDatabaseParameters connectionParameters, ICHXDatabase manager)
         {

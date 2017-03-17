@@ -34,7 +34,7 @@ namespace CHXDatabaseLibrary.DatabaseCommands.PostgreSql
 
         public override CHXQuery GetAllGeometryColumns()
         {
-            return new CHXQuery("select f_table_catalog as CatalogName, f_table_schema as SchemaName, f_table_name as TableName, f_geometry_column as  GeometryColumn, srid as Srid, type as GeometryType from geometry_columns;");
+            return new CHXQuery("select f_table_catalog as CatalogName, f_table_schema as SchemaName, f_table_name as TableName, f_geometry_column as  Name, srid as Srid, type as GeometryType from geometry_columns;");
         }
 
         public override CHXQuery GetAllView()

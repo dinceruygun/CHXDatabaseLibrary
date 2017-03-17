@@ -15,6 +15,7 @@ namespace CHXDatabaseLibrary
         CHXDatabaseParameters _connectionParameters;
         CHXDatabaseType? _databaseType;
         CHXDatabaseConnection _connection;
+        CHXDatabaseManager _databaseManager;
 
 
 
@@ -39,6 +40,19 @@ namespace CHXDatabaseLibrary
             get
             {
                 return _connection;
+            }
+        }
+
+        public CHXDatabaseManager DatabaseManager
+        {
+            get
+            {
+                return _databaseManager;
+            }
+            internal set
+            {
+                _databaseManager = value;
+                _connection.DatabaseManager = _databaseManager;
             }
         }
 

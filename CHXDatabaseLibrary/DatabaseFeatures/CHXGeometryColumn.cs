@@ -43,7 +43,7 @@ namespace CHXDatabaseLibrary.DatabaseFeatures
             }
         }
 
-        public string GeometryColumn
+        public string Name
         {
             get
             {
@@ -98,7 +98,7 @@ namespace CHXDatabaseLibrary.DatabaseFeatures
 
         public override string ToString()
         {
-            return $"{this.SchemaName}.{this.TableName}.{this.GeometryColumn} (SRID:{this.SRID})";
+            return $"{this.SchemaName}.{this.TableName}.{this.Name} (SRID:{this.SRID})";
         }
     }
 }

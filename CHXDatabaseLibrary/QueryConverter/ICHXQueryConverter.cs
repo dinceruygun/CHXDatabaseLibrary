@@ -8,6 +8,6 @@ namespace CHXDatabaseLibrary.QueryConverter
 {
     public abstract class ICHXQueryConverter
     {
-        public abstract object Convert<T>(T data);
+        public abstract QueryContainer Convert<T>(T data);
     }
 }
