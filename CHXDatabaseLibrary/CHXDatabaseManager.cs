@@ -179,6 +179,8 @@ namespace CHXDatabaseLibrary
             var query = new CHXQuery();
             query.Sql = queryContainer.Sql;
             query.Parameter = queryContainer.Parameter;
+            query.AddGeometry = queryContainer.AddGeometry;
+            query.GeometryColumn = queryContainer.GeometryColumn;
 
 
             return this.RunQuery<T>(query);

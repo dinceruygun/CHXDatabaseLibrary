@@ -58,6 +58,10 @@
       <Project>{75eda605-a9e7-45d6-a002-61f2daab9a18}</Project>
       <Name>CHXDatabaseLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CHXGeoJson\CHXGeoJson.csproj">
+      <Project>{f79318fa-e2cd-4cae-8cc7-83b85b23651a}</Project>
+      <Name>CHXGeoJson</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CHXSettings\CHXSettings.csproj">
       <Project>{e6dfd254-7947-4a4b-a062-a0d5f751d0d9}</Project>
       <Name>CHXSettings</Name>

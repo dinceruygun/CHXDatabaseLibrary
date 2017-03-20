@@ -1,4 +1,5 @@
 ﻿using CHXConverter;
+using CHXGeoJson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,13 @@ namespace CHXDataService.Api.CHXApiControllers.Model.Model
             var query = mydb.Database.ConvertQuery<string>(data.Data, CHXDatabaseLibrary.CHXQueryType.Json);
             var result = mydb.Database.RunQuery<dynamic>(query);
 
-            return result;
+            if (result == null) return null;
+
+            var collection = new CHXFeatureCollection();
+            collection.features = result as CHXFeatures;
+            collection.type = "FeatureCollection";
+
+            return collection;
         }
 
         public override string GetPermissionName()

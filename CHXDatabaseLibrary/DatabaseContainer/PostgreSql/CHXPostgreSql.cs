@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CHXDatabaseLibrary.QueryConverter;
+using GeoAPI.Geometries;
+using NetTopologySuite.Geometries;
+using NetTopologySuite.IO;
 
 namespace CHXDatabaseLibrary.DatabaseContainer.PostgreSql
 {
@@ -138,18 +141,17 @@ namespace CHXDatabaseLibrary.DatabaseContainer.PostgreSql
         {
             var result = Connection.Query<T>(query.Sql, query.Parameter, query.Transaction, query.Buffered, query.CommandTimeout, query.CommandType);
 
-            if (typeof(T).Name == "Object")
-            {
-                foreach (var row in result)
-                {
-                    foreach (var col in (row as IDictionary<string, object>))
-                    {
+            var pgconverter = PgDataConverterFactory.GetConverter(typeof(T).Name);
 
-                    }
-                }
+            if(pgconverter == null)
+            {
+                return result;
+            }
+            else
+            {
+                return pgconverter.Convert<T>(query, result);
             }
 
-            return result;
         }
 
         public override string ToSql(QueryContainer queryContainer, bool addParameter)
