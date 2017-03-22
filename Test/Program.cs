@@ -20,7 +20,7 @@ namespace Test
 
             parameters.Add("Server", "192.168.2.188");
             parameters.Add("Port", "5432");
-            parameters.Add("Database", "openstreet");
+            parameters.Add("Database", "atakumgis");
             parameters.Add("User Id", "postgres");
             parameters.Add("Password", "ntc123*");
 
@@ -33,7 +33,7 @@ namespace Test
             //var query = manager.ConvertQuery<string>(@"{ ""server"": ""kbb2"", ""schema"": ""public"", ""query"": { ""geoyol"": { ""type"": ""table"", ""addgeometry"": true, ""field"": [ ""objectid"", ""yol_adi"" ], ""find"": [ { ""yol_tipi_id"": 4, ""yol_turu_id"": 5 }, { ""yol_turu_id"": 4 } ] }, ""kod_yol_turu"": { ""type"": ""table"", ""field"": [ ""adi => yol_turu"" ] }, ""kod_yol_tipi"": { ""type"": ""table"", ""field"": [ ""adi => yol_tipi"" ] } }, ""join"": { ""inner"": { ""kod_yol_turu.kod"": ""geoyol.yol_turu_id"" }, ""left"": { ""kod_yol_tipi.kod"": ""geoyol.yol_tipi_id"" } } }", 
             //                                        CHXDatabaseLibrary.CHXQueryType.Json);
 
-            var query = manager.ConvertQuery<string>(@"{ ""server"": ""openstreet"", ""schema"": ""public"", ""query"": { ""yollar"": { ""type"": ""table"", ""addgeometry"": true, ""field"": [ ""objectid"", ""name"", ""ref"" ], ""find"": [ { ""ref"": ""D550"" } ] } } }",
+            var query = manager.ConvertQuery<string>(@"{ ""server"": ""atakumgis"", ""schema"": ""public"", ""query"": { ""parsel"": { ""type"": ""table"", ""addgeometry"": true, ""field"": [ ""objectid"", ""adaparsel"", ""alan"" ], ""find"": [ { ""tapu_mah_adi"": ""AKALAN"" } ], ""geo_shape"": { ""location"": { ""shape"": { ""type"": ""Point"", ""coordinates"" : [515458.256064797, 4585609.61491352] }, ""relation"": ""intersect"" } } } } }",
                                                     CHXDatabaseLibrary.CHXQueryType.Json);
 
 

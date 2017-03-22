@@ -88,6 +88,7 @@
     <Compile Include="CHXFeatureCollection.cs" />
     <Compile Include="CHXFeatures.cs" />
     <Compile Include="CHXGeometry.cs" />
+    <Compile Include="CHXGeometryRelation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

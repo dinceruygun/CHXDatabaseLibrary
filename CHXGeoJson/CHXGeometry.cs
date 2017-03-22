@@ -18,7 +18,20 @@ namespace CHXGeoJson
         public string type { get; set; }
         public object coordinates { get; set; }
 
+        public void ReadGeoJson(string geojson)
+        {
+            GeoJsonReader reader = new GeoJsonReader();
+            IGeometry geometry = reader.Read<IGeometry>(geojson);
 
+            List<IGeometry> poly = new List<IGeometry>();
+            poly.Add(geometry);
+
+            if (poly.Count < 1) return;
+
+            this.type = poly[0].GeometryType;
+
+            SetGeometry(poly[0]);
+        }
 
         public void ReadWkt(string wkt)
         {
@@ -33,32 +46,37 @@ namespace CHXGeoJson
             this.type = poly[0].GeometryType;
 
 
-            switch (poly[0].OgcGeometryType)
+            SetGeometry(poly[0]);
+
+        }
+
+        private void SetGeometry(IGeometry geometry)
+        {
+            switch (geometry.OgcGeometryType)
             {
                 case OgcGeometryType.Polygon:
                 case OgcGeometryType.LineString:
                 case OgcGeometryType.Point:
-                    this.coordinates = ConvertCoordinates(poly[0].Coordinates);
+                    this.coordinates = ConvertCoordinates(geometry.Coordinates);
                     break;
                 case OgcGeometryType.MultiPolygon:
                     this.coordinates = new List<dynamic>();
-                    foreach (var item in (poly[0] as MultiPolygon).Geometries)
+                    foreach (var item in (geometry as MultiPolygon).Geometries)
                         (coordinates as List<dynamic>).Add(ConvertCoordinates(item.Coordinates));
                     break;
                 case OgcGeometryType.MultiPoint:
                     this.coordinates = new List<dynamic>();
-                    foreach (var item in (poly[0] as MultiPoint).Geometries)
+                    foreach (var item in (geometry as MultiPoint).Geometries)
                         (coordinates as List<dynamic>).Add(ConvertCoordinates(item.Coordinates));
                     break;
                 case OgcGeometryType.MultiLineString:
                     this.coordinates = new List<dynamic>();
-                    foreach (var item in (poly[0] as MultiLineString).Geometries)
+                    foreach (var item in (geometry as MultiLineString).Geometries)
                         (coordinates as List<dynamic>).Add(ConvertCoordinates(item.Coordinates));
                     break;
                 default:
                     break;
             }
-
         }
 
 

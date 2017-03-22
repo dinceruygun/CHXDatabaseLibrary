@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CHXGeoJson;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -142,6 +143,7 @@ namespace CHXDatabaseLibrary.QueryConverter
                 _queryFind = value;
             }
         }
+        public List<QueryGeometry> QueryGeometryList { get; set; }
 
         public QueryTable()
         {
@@ -154,6 +156,12 @@ namespace CHXDatabaseLibrary.QueryConverter
         {
             return this.TableName;
         }
+    }
+
+    public class QueryGeometry
+    {
+        public CHXGeometryRelation Relation { get; set; }
+        public CHXGeometry Geometry { get; set; }
     }
 
     public class QueryFindList : List<QueryFind> { }
