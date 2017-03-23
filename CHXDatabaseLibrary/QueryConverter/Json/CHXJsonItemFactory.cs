@@ -13,20 +13,23 @@ namespace CHXDatabaseLibrary.QueryConverter.Json
 
         public static ICHXJsonItemConverter GetItemConverter(string itemName)
         {
-            switch (itemName)
+            lock (_locker)
             {
-                case "server":
-                    return new CHXJsonServer();
-                case "query":
-                    return new CHXJsonQuery();
-                case "schema":
-                    return new CHXJsonSchema();
-                case "join":
-                    return new CHXJsonJoin();
-                case "group":
-                    return new CHXJsonGroup();
-                default:
-                    return null;
+                switch (itemName)
+                {
+                    case "server":
+                        return new CHXJsonServer();
+                    case "query":
+                        return new CHXJsonQuery();
+                    case "schema":
+                        return new CHXJsonSchema();
+                    case "join":
+                        return new CHXJsonJoin();
+                    case "group":
+                        return new CHXJsonGroup();
+                    default:
+                        return null;
+                }
             }
         }
     }

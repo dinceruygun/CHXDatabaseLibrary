@@ -181,6 +181,7 @@ namespace CHXDatabaseLibrary
             query.Parameter = queryContainer.Parameter;
             query.AddGeometry = queryContainer.AddGeometry;
             query.GeometryColumn = queryContainer.GeometryColumn;
+            
 
 
             return this.RunQuery<T>(query);

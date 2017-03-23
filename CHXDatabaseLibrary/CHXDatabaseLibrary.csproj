@@ -162,6 +162,13 @@
     <Compile Include="QueryConverter\Json\ItemCollection\CHXJsonQuery.cs" />
     <Compile Include="QueryConverter\Json\ItemCollection\CHXJsonSchema.cs" />
     <Compile Include="QueryConverter\Json\ItemCollection\CHXJsonServer.cs" />
+    <Compile Include="QueryConverter\Json\ItemCollection\JsonQuery\CHXJsonQueryElementFactory.cs" />
+    <Compile Include="QueryConverter\Json\ItemCollection\JsonQuery\CHXQueryAddGeometry.cs" />
+    <Compile Include="QueryConverter\Json\ItemCollection\JsonQuery\CHXQueryField.cs" />
+    <Compile Include="QueryConverter\Json\ItemCollection\JsonQuery\CHXQueryFind.cs" />
+    <Compile Include="QueryConverter\Json\ItemCollection\JsonQuery\CHXQueryGeoShape.cs" />
+    <Compile Include="QueryConverter\Json\ItemCollection\JsonQuery\CHXQueryType.cs" />
+    <Compile Include="QueryConverter\Json\ItemCollection\JsonQuery\ICHXJsonQuery.cs" />
     <Compile Include="QueryConverter\QueryContainer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +181,7 @@
       <Name>CHXGeoJson</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
