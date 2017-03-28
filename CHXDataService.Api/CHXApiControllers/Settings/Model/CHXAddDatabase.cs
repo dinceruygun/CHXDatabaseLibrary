@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using CHXDatabase.IO;
 
 namespace CHXDataService.Api.CHXApiControllers.Settings.Model
 {
@@ -32,10 +33,9 @@ namespace CHXDataService.Api.CHXApiControllers.Settings.Model
             if (CHXDatabaseFactory.DatabaseCollection[_name.Value.ToString()] != null) return "Aynı isimden veri tabanı bulunuyor";
 
 
-            CHXDatabaseLibrary.CHXDatabaseType databaseType = (CHXDatabaseLibrary.CHXDatabaseType)System.Enum.Parse(typeof(CHXDatabaseLibrary.CHXDatabaseType), _type.Value.ToString());
-
-            var parameters = new CHXDatabaseLibrary.CHXDatabaseParameters();
-            parameters.AddRange(_parameters.Select(p => new CHXDatabaseLibrary.CHXDatabaseParameter(p.Name, p.Value.ToString())));
+            CHXDatabaseType databaseType = (CHXDatabaseType)System.Enum.Parse(typeof(CHXDatabaseType), _type.Value.ToString());
+           var parameters = new CHXDatabaseParameters();
+            parameters.AddRange(_parameters.Select(p => new CHXDatabaseParameter(p.Name, p.Value.ToString())));
 
             CHXDatabaseFactory.AddDatabase(_name.Value.ToString(), parameters, databaseType);
 

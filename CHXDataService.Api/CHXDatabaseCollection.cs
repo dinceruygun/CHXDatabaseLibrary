@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CHXDatabase.IO;
 
 namespace CHXDataService.Api
 {
@@ -51,7 +52,7 @@ namespace CHXDataService.Api
             if (this[databaseName] == null)
             {
                 db = new CHXDatabaseContainer() { Name = databaseName };
-                db.Database = new CHXDatabaseManager(new CHXDatabase(connectionParameters, databaseType));
+                db.Database = new CHXDatabaseManager(new CHXDatabase.IO.CHXDatabase(connectionParameters, databaseType));
 
                 this.Add(db);
             }

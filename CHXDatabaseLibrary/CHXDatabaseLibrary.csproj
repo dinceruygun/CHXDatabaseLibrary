@@ -120,37 +120,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CHXCommandManager.cs" />
-    <Compile Include="CHXDatabaseConnection.cs" />
     <Compile Include="CHXDatabaseFactory.cs" />
-    <Compile Include="CHXDatabase.cs" />
     <Compile Include="CHXDatabaseManager.cs" />
-    <Compile Include="CHXDatabaseParameter.cs" />
-    <Compile Include="CHXDatabaseParameters.cs" />
-    <Compile Include="CHXDatabaseType.cs" />
-    <Compile Include="CHXQuery.cs" />
-    <Compile Include="CHXQueryType.cs" />
-    <Compile Include="DatabaseCommands\CHXDatabaseCommandFactory.cs" />
-    <Compile Include="DatabaseCommands\ICHXDatabaseCommand.cs" />
-    <Compile Include="DatabaseCommands\PostgreSql\PostgreSql.cs" />
-    <Compile Include="DatabaseContainer\PostgreSql\PgToFeatureCollection.cs" />
-    <Compile Include="DatabaseContainer\PostgreSql\CHXPostgreSql.cs" />
-    <Compile Include="DatabaseContainer\PostgreSql\PgDataConverterFactory.cs" />
-    <Compile Include="DatabaseContainer\PostgreSql\IPgDataConverter.cs" />
-    <Compile Include="DatabaseFeatures\CHXColumn.cs" />
-    <Compile Include="DatabaseFeatures\CHXColumns.cs" />
-    <Compile Include="DatabaseFeatures\CHXConstraint.cs" />
-    <Compile Include="DatabaseFeatures\CHXConstraintCollection.cs" />
-    <Compile Include="DatabaseFeatures\CHXConstraintType.cs" />
-    <Compile Include="DatabaseFeatures\CHXGeometryColumn.cs" />
-    <Compile Include="DatabaseFeatures\CHXGeometryColumns.cs" />
-    <Compile Include="DatabaseFeatures\CHXIndex.cs" />
-    <Compile Include="DatabaseFeatures\CHXIndexCollection.cs" />
-    <Compile Include="DatabaseFeatures\CHXSequence.cs" />
-    <Compile Include="DatabaseFeatures\CHXSequenceCollection.cs" />
-    <Compile Include="DatabaseFeatures\CHXTable.cs" />
-    <Compile Include="DatabaseFeatures\CHXTableCollection.cs" />
-    <Compile Include="DatabaseFeatures\ICHXDatabaseFeature.cs" />
-    <Compile Include="ICHXDatabase.cs" />
+    <Compile Include="CHXDatabaseCommandFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryConverter\CHXQueryConverterFactory.cs" />
     <Compile Include="QueryConverter\ICHXQueryConverter.cs" />
@@ -169,16 +141,23 @@
     <Compile Include="QueryConverter\Json\ItemCollection\JsonQuery\CHXQueryGeoShape.cs" />
     <Compile Include="QueryConverter\Json\ItemCollection\JsonQuery\CHXQueryType.cs" />
     <Compile Include="QueryConverter\Json\ItemCollection\JsonQuery\ICHXJsonQuery.cs" />
-    <Compile Include="QueryConverter\QueryContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CHXDatabase\CHXDatabase.IO.csproj">
+      <Project>{14dbc944-3c0b-4909-9e20-17bed001bc90}</Project>
+      <Name>CHXDatabase.IO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CHXGeoJson\CHXGeoJson.csproj">
       <Project>{f79318fa-e2cd-4cae-8cc7-83b85b23651a}</Project>
       <Name>CHXGeoJson</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CHXPostgreSql\CHXPostgreSqlLibrary.csproj">
+      <Project>{7693182a-74af-4c9b-a5ff-585036eb8dfc}</Project>
+      <Name>CHXPostgreSqlLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

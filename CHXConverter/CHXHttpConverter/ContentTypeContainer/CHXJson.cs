@@ -1,5 +1,4 @@
 ﻿using CHXConverter.CHXParameterType;
-using CHXDatabaseLibrary.DatabaseFeatures;
 using CHXDatabaseLibrary;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;

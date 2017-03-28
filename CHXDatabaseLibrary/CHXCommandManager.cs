@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CHXDatabaseLibrary.DatabaseCommands;
+using CHXDatabase.IO;
+
 
 namespace CHXDatabaseLibrary
 {
-    public class CHXCommandManager
+    public class CHXCommandManager: ICHXCommandManager
     {
-        private CHXDatabase _database;
-        private DatabaseCommands.ICHXDatabaseCommand _commands;
+        
+        private CHXDatabase.IO.CHXDatabase _database;
+        private ICHXDatabaseCommand _commands;
 
-        public CHXDatabase Database
+        public CHXDatabase.IO.CHXDatabase Database
         {
             get
             {
@@ -20,7 +22,7 @@ namespace CHXDatabaseLibrary
             }
         }
 
-        public ICHXDatabaseCommand Commands
+        public override ICHXDatabaseCommand Commands
         {
             get
             {
@@ -33,7 +35,7 @@ namespace CHXDatabaseLibrary
 
         }
 
-        public CHXCommandManager(CHXDatabase _database)
+        public CHXCommandManager(CHXDatabase.IO.CHXDatabase _database)
         {
             this._database = _database;
 
@@ -43,7 +45,7 @@ namespace CHXDatabaseLibrary
 
         protected void Init()
         {
-            _commands = DatabaseCommands.CHXDatabaseCommandFactory.GetDatabaseCommand(Database);
+            _commands = CHXDatabaseCommandFactory.GetDatabaseCommand(Database);
 
             if (_commands != null)
             {

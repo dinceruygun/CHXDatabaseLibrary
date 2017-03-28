@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CHXDatabase.IO;
+using CHXDatabase;
 
 namespace Test
 {
@@ -16,16 +18,16 @@ namespace Test
             var tt = new CHXGeometry();
             tt.ReadWkt("MULTILINESTRING((31.4496904 36.7991082,31.4504789 36.7986288), (31.4496904 36.7991082,31.4504789 36.7986288))");
 
-            var parameters = new CHXDatabaseLibrary.CHXDatabaseParameters();
+            var parameters = new CHXDatabaseParameters();
 
             parameters.Add("Server", "192.168.2.188");
             parameters.Add("Port", "5432");
             parameters.Add("Database", "atakumgis");
             parameters.Add("User Id", "postgres");
             parameters.Add("Password", "ntc123*");
+            
 
-
-            var mydatabase = new CHXDatabaseLibrary.CHXDatabase(parameters, CHXDatabaseLibrary.CHXDatabaseType.PostgreSql);
+            var mydatabase = new CHXDatabase.IO.CHXDatabase(parameters, CHXDatabaseType.PostgreSql);
             var manager = new CHXDatabaseLibrary.CHXDatabaseManager(mydatabase);
 
 
@@ -34,7 +36,7 @@ namespace Test
             //                                        CHXDatabaseLibrary.CHXQueryType.Json);
 
             var query = manager.ConvertQuery<string>(@"{ ""server"": ""atakumgis"", ""schema"": ""public"", ""query"": { ""parsel"": { ""type"": ""table"", ""addgeometry"": true, ""field"": [ ""objectid"", ""adaparsel"", ""alan"" ], ""find"": [ { ""tapu_mah_adi"": ""AKALAN"" } ], ""geo_shape"": { ""location"": { ""shape"": { ""type"": ""Point"", ""coordinates"" : [515458.256064797, 4585609.61491352] }, ""relation"": ""intersect"" } } } } }",
-                                                    CHXDatabaseLibrary.CHXQueryType.Json);
+                                                    CHXQueryType.Json);
 
 
             var result = manager.RunQuery<dynamic>(query);

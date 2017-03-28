@@ -3,25 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CHXDatabaseLibrary.DatabaseFeatures;
 using System.Data;
 using CHXDatabaseLibrary.QueryConverter;
+using CHXDatabase;
+using CHXDatabase.IO;
+using CHXDatabase.IO.DatabaseFeatures;
 
 namespace CHXDatabaseLibrary
 {
-    public class CHXDatabaseManager
+    public class CHXDatabaseManager: ICHXDatabaseManager
     {
-        CHXDatabase _database;
-        DatabaseFeatures.CHXTableCollection _tables;
-        DatabaseFeatures.CHXTableCollection _views;
-        DatabaseFeatures.CHXSequenceCollection _sequences;
-        CHXCommandManager _commandManager;
+        CHXDatabase.IO.CHXDatabase _database;
+        CHXTableCollection _tables;
+        CHXTableCollection _views;
+        CHXSequenceCollection _sequences;
+        ICHXCommandManager _commandManager;
         CHXGeometryColumns _geometryColumnCollection;
         CHXConstraintCollection _constraints;
         CHXIndexCollection _indexes;
 
 
-        public CHXCommandManager CommandManager
+        public override ICHXCommandManager CommandManager
         {
             get
             {
@@ -29,8 +31,7 @@ namespace CHXDatabaseLibrary
             }
         }
 
-
-        public CHXDatabase Database
+        public override CHXDatabase.IO.CHXDatabase Database
         {
             get
             {
@@ -43,9 +44,7 @@ namespace CHXDatabaseLibrary
             }
         }
 
-        
-
-        public CHXTableCollection Tables
+        public override CHXTableCollection Tables
         {
             get
             {
@@ -61,7 +60,7 @@ namespace CHXDatabaseLibrary
             }
         }
 
-        public CHXGeometryColumns GeometryColumnCollection
+        public override CHXGeometryColumns GeometryColumnCollection
         {
             get
             {
@@ -69,7 +68,7 @@ namespace CHXDatabaseLibrary
             }
         }
 
-        public CHXTableCollection Views
+        public override CHXTableCollection Views
         {
             get
             {
@@ -86,7 +85,7 @@ namespace CHXDatabaseLibrary
             }
         }
 
-        public CHXSequenceCollection Sequences
+        public override CHXSequenceCollection Sequences
         {
             get
             {
@@ -102,7 +101,7 @@ namespace CHXDatabaseLibrary
             }
         }
 
-        public CHXConstraintCollection Constraints
+        public override CHXConstraintCollection Constraints
         {
             get
             {
@@ -119,7 +118,7 @@ namespace CHXDatabaseLibrary
             }
         }
 
-        public CHXIndexCollection Indexes
+        public override CHXIndexCollection Indexes
         {
             get
             {
@@ -139,9 +138,12 @@ namespace CHXDatabaseLibrary
 
         }
 
-        public CHXDatabaseManager(CHXDatabase database)
+        public CHXDatabaseManager(CHXDatabase.IO.CHXDatabase database)
         {
             _database = database;
+
+            _database.SetConnection(CHXDatabaseFactory.GetDatabase(_database.ConnectionParameters, _database.DatabaseType, _database));
+
             _database.DatabaseManager = this;
 
             Init();
@@ -152,17 +154,19 @@ namespace CHXDatabaseLibrary
             _tables = null;
             _commandManager = new CHXCommandManager(_database);
 
+            
+
             LoadGeometryColumnsContainer();
         }
 
-        protected void LoadGeometryColumnsContainer()
+        public override void LoadGeometryColumnsContainer()
         {
             _geometryColumnCollection = null;
             _geometryColumnCollection = new CHXGeometryColumns();
-            _geometryColumnCollection.AddRange(this.RunQuery<DatabaseFeatures.CHXGeometryColumn>(CommandManager.Commands.GetAllGeometryColumns()));
+            _geometryColumnCollection.AddRange(this.RunQuery<CHXGeometryColumn>(CommandManager.Commands.GetAllGeometryColumns()));
         }
 
-        public IEnumerable<T> RunQuery<T>(CHXQuery query)
+        public override IEnumerable<T> RunQuery<T>(CHXQuery query)
         {
             var result = Database.Connection.RunQuery<T>(query);
 
@@ -171,8 +175,7 @@ namespace CHXDatabaseLibrary
             return result;
         }
 
-
-        public IEnumerable<T> RunQuery<T>(QueryContainer queryContainer)
+        public override IEnumerable<T> RunQuery<T>(QueryContainer queryContainer)
         {
             if (queryContainer.Database.DatabaseType != this.Database.DatabaseType) throw new Exception("Hedef veri tabanı tipi ve sorgu veri tabanı tipi uyumsuz.");
 
@@ -187,8 +190,7 @@ namespace CHXDatabaseLibrary
             return this.RunQuery<T>(query);
         }
 
-
-        public QueryContainer ConvertQuery<T>(T data, CHXQueryType queryType)
+        public override QueryContainer ConvertQuery<T>(T data, CHXQueryType queryType)
         {
             var converter = QueryConverter.CHXQueryConverterFactory.GetQueryConverter(queryType);
 

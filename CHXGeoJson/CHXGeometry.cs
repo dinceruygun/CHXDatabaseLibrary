@@ -18,6 +18,10 @@ namespace CHXGeoJson
         public string type { get; set; }
         public object coordinates { get; set; }
 
+
+
+        private IGeometry _polygon;
+
         public void ReadGeoJson(string geojson)
         {
             GeoJsonReader reader = new GeoJsonReader();
@@ -47,11 +51,12 @@ namespace CHXGeoJson
 
 
             SetGeometry(poly[0]);
-
         }
 
         private void SetGeometry(IGeometry geometry)
         {
+            _polygon = geometry;
+
             switch (geometry.OgcGeometryType)
             {
                 case OgcGeometryType.Polygon:
@@ -77,6 +82,8 @@ namespace CHXGeoJson
                 default:
                     break;
             }
+
+
         }
 
 
@@ -180,6 +187,15 @@ namespace CHXGeoJson
             return null;
         }
 
+        public string ToWKT()
+        {
+            return this.ToString();
+        }
+
+        public override string ToString()
+        {
+            return this._polygon.ToString();
+        }
     }
 
 }

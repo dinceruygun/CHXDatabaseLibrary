@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using CHXDatabase.IO;
 
 namespace CHXDataService.Api.CHXApiControllers.Model.Model
 {
@@ -33,7 +34,7 @@ namespace CHXDataService.Api.CHXApiControllers.Model.Model
             if (mydb == null) throw new NullReferenceException($"{_server.Value.ToString()} isimli veri tabanı bulunamadı");
 
 
-            var query = mydb.Database.ConvertQuery<string>(data.Data, CHXDatabaseLibrary.CHXQueryType.Json);
+            var query = mydb.Database.ConvertQuery<string>(data.Data, CHXQueryType.Json);
             var result = mydb.Database.RunQuery<dynamic>(query);
 
             if (result == null) return null;

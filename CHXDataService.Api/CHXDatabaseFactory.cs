@@ -8,6 +8,8 @@ using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using CHXConverter;
+using CHXDatabase;
+using CHXDatabase.IO;
 
 namespace CHXDataService.Api
 {
@@ -65,7 +67,7 @@ namespace CHXDataService.Api
 
             foreach (var item in convertList)
             {
-                _databaseCollection.Add(new CHXDatabaseContainer() { Name = item.name, Database = new CHXDatabaseManager(new CHXDatabase(item.parameters, item.type)) });
+                _databaseCollection.Add(new CHXDatabaseContainer() { Name = item.name, Database = new CHXDatabaseManager(new CHXDatabase.IO.CHXDatabase(item.parameters, item.type)) });
             }
 
         }
@@ -90,7 +92,7 @@ namespace CHXDataService.Api
             lock (_locker)
             {
                 var db = new CHXDatabaseContainer() { Name = databaseName };
-                db.Database = new CHXDatabaseManager(new CHXDatabase(connectionParameters, databaseType));
+                db.Database = new CHXDatabaseManager(new CHXDatabase.IO.CHXDatabase(connectionParameters, databaseType));
 
                 AddDatabase(db);
             }
@@ -113,7 +115,7 @@ namespace CHXDataService.Api
 
             return;
 
-            var parameters = new CHXDatabaseLibrary.CHXDatabaseParameters();
+            var parameters = new CHXDatabaseParameters();
 
             parameters.Add("Server", "192.168.2.188");
             parameters.Add("Port", "5432");
@@ -122,7 +124,7 @@ namespace CHXDataService.Api
             parameters.Add("Password", "ntc123*");
 
 
-            DatabaseCollection.Add("test", parameters, CHXDatabaseLibrary.CHXDatabaseType.PostgreSql);
+            DatabaseCollection.Add("test", parameters, CHXDatabaseType.PostgreSql);
         }
 
         public static CHXDatabaseContainer GetDatabase(string databaseName)

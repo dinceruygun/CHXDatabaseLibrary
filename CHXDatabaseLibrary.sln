@@ -25,6 +25,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSettings", "TestSetting
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHXGeoJson", "CHXGeoJson\CHXGeoJson.csproj", "{F79318FA-E2CD-4CAE-8CC7-83B85B23651A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CHXDatabaseCollection", "CHXDatabaseCollection", "{7818F082-3570-43E0-9E1F-F6A172905340}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHXPostgreSqlLibrary", "CHXPostgreSql\CHXPostgreSqlLibrary.csproj", "{7693182A-74AF-4C9B-A5FF-585036EB8DFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHXDatabase.IO", "CHXDatabase\CHXDatabase.IO.csproj", "{14DBC944-3C0B-4909-9E20-17BED001BC90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,8 +81,19 @@ Global
 		{F79318FA-E2CD-4CAE-8CC7-83B85B23651A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F79318FA-E2CD-4CAE-8CC7-83B85B23651A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F79318FA-E2CD-4CAE-8CC7-83B85B23651A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7693182A-74AF-4C9B-A5FF-585036EB8DFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7693182A-74AF-4C9B-A5FF-585036EB8DFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7693182A-74AF-4C9B-A5FF-585036EB8DFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7693182A-74AF-4C9B-A5FF-585036EB8DFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14DBC944-3C0B-4909-9E20-17BED001BC90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14DBC944-3C0B-4909-9E20-17BED001BC90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14DBC944-3C0B-4909-9E20-17BED001BC90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14DBC944-3C0B-4909-9E20-17BED001BC90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7693182A-74AF-4C9B-A5FF-585036EB8DFC} = {7818F082-3570-43E0-9E1F-F6A172905340}
 	EndGlobalSection
 EndGlobal

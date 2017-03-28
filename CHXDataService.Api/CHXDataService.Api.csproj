@@ -95,6 +95,10 @@
       <Project>{75eda605-a9e7-45d6-a002-61f2daab9a18}</Project>
       <Name>CHXDatabaseLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CHXDatabase\CHXDatabase.IO.csproj">
+      <Project>{14dbc944-3c0b-4909-9e20-17bed001bc90}</Project>
+      <Name>CHXDatabase.IO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CHXGeoJson\CHXGeoJson.csproj">
       <Project>{f79318fa-e2cd-4cae-8cc7-83b85b23651a}</Project>
       <Name>CHXGeoJson</Name>

@@ -1,9 +1,13 @@
-﻿using System;
+﻿using CHXDatabase;
+using CHXPostgreSqlLibrary;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CHXDatabase.IO;
+
 
 namespace CHXDatabaseLibrary
 {
@@ -11,14 +15,14 @@ namespace CHXDatabaseLibrary
     {
         private static object _locker = new object();
 
-        internal static CHXDatabaseConnection GetDatabase(CHXDatabaseParameters connectionParameters, CHXDatabaseType? databaseType, ICHXDatabase manager)
+        public static CHXDatabaseConnection GetDatabase(CHXDatabaseParameters connectionParameters, CHXDatabaseType? databaseType, ICHXDatabase manager)
         {
             lock (_locker)
             {
                 switch (databaseType)
                 {
                     case CHXDatabaseType.PostgreSql:
-                        return new DatabaseContainer.PostgreSql.CHXPostgreSql(connectionParameters, manager);
+                        return new CHXPostgreSql(connectionParameters, manager);
                     default:
                         return null;
                 }
