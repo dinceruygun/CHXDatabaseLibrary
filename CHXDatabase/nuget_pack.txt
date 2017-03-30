@@ -1,0 +1,4 @@
+nuget pack "E:\DINCER_UYGUN\_dincer.uygun\CHX\CHXDatabaseLibrary\CHXDatabase\CHXDatabase.IO.csproj"  -Build -Properties Configuration=Release
+
+
+nuget push E:\DINCER_UYGUN\NUGET\CHXDatabase.IO.1.0.0.nupkg -source http://chxnuget.azurewebsites.net/ -ApiKey Xx$5T?Jb_X%Be9:jEvA!fGxV/7x

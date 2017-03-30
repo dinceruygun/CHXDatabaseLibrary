@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CHXDatabase.IO;
 using CHXDatabase.IO.DatabaseFeatures;
+using CHXGeoJson;
 
 namespace CHXPostgreSqlLibrary
 {
@@ -149,6 +150,31 @@ namespace CHXPostgreSqlLibrary
                                 , source_ns.nspname 
                                 , source_table.relname
                                 ORDER BY 1,2;", new { SCHEMANAME = schemaName, TABLENAME = tableName });
+        }
+
+
+
+        public override string GetSpatialQuery(CHXTable cHXTable, QueryGeometry geometry)
+        {
+            if (cHXTable == null) return null;
+            if (geometry == null) return null;
+
+            if (string.IsNullOrEmpty(geometry.Geometry.ToWKT())) return null;
+
+            string result = "";
+
+            if (geometry.Relation == CHXGeometryRelation.intersect)
+            {
+                result = $"st_intersects({cHXTable.TableName}.{cHXTable.GeometryColumn.Name}, st_geomfromtext('{geometry.Geometry.ToWKT()}', {cHXTable.GeometryColumn.SRID}))";
+            }
+            else if (geometry.Relation == CHXGeometryRelation.distance)
+            {
+                if (geometry.Geometry.type != "Point") throw new Exception("Yakınlık analizi yapmak için point geometry olması gerekir.");
+
+                result = $"st_intersects({cHXTable.TableName}.{cHXTable.GeometryColumn.Name}, st_buffer( st_geomfromtext('{geometry.Geometry.ToWKT()}', {cHXTable.GeometryColumn.SRID}), {geometry.Distance}))";
+            }
+
+            return result;
         }
     }
 }

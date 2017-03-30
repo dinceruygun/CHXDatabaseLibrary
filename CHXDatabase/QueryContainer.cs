@@ -159,6 +159,7 @@ namespace CHXDatabase.IO
 
     public class QueryGeometry
     {
+        public double Distance { get; set; }
         public CHXGeometryRelation Relation { get; set; }
         public CHXGeometry Geometry { get; set; }
     }

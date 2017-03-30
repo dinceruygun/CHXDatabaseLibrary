@@ -21,6 +21,7 @@ namespace CHXDatabase.IO
         public abstract IEnumerable<T> RunQuery<T>(CHXQuery query);
         public abstract string ToSql(QueryContainer queryContainer, bool addParameter);
         public abstract object ToParameter(QueryContainer queryContainer);
+        public abstract bool Status { get; }
 
 
         public ICHXDatabaseManager DatabaseManager { get; set; }

@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using CHXDatabase.IO;
+using System;
 
 namespace CHXPostgreSqlLibrary
 {
@@ -82,6 +83,22 @@ namespace CHXPostgreSqlLibrary
             }
         }
 
+        public override bool Status
+        {
+            get
+            {
+                try
+                {
+                    LoadVersion();
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
 
         public IDbTransaction BeginTransaction()
         {
@@ -185,16 +202,7 @@ namespace CHXPostgreSqlLibrary
                 if (string.IsNullOrEmpty(firstTable)) firstTable = q.TableName;
 
 
-                if (q.QueryGeometryList != null)
-                {
-                    if (q.QueryGeometryList.Count > 0)
-                    {
-                        foreach (var item in q.QueryGeometryList)
-                        {
-                            string wkt = item.Geometry.ToWKT();
-                        }
-                    }
-                }
+                
 
 
                 if (where.Length > 0 && q.QueryFind != null)
@@ -210,6 +218,27 @@ namespace CHXPostgreSqlLibrary
                         )
                         ) + ")"
                         )));
+
+
+
+                if (q.QueryGeometryList != null)
+                {
+                    if (q.QueryGeometryList.Count > 0)
+                    {
+                        foreach (var item in q.QueryGeometryList)
+                        {
+                            string intersectQuery = queryContainer.Database.DatabaseManager.CommandManager.Commands.GetSpatialQuery(
+                                queryContainer.Database.DatabaseManager.Tables.Find(t => t.TableName == q.TableName), item
+                                );
+
+
+                            if (where.Length > 0 && q.QueryFind != null)
+                                where.Append(" and ");
+
+                            where.Append(intersectQuery);
+                        }
+                    }
+                }
             }
 
 

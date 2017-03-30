@@ -133,6 +133,22 @@ namespace CHXDatabaseLibrary
             }
         }
 
+        public override bool Status
+        {
+            get
+            {
+                return Database.Connection.Status;
+            }
+        }
+
+        public override string Version
+        {
+            get
+            {
+                return this.Database.Connection.Version;
+            }
+        }
+
         public CHXDatabaseManager()
         {
 

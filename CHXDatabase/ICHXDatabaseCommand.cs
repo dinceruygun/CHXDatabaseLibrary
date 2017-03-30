@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CHXDatabase.IO;
 using CHXDatabase.IO.DatabaseFeatures;
+using CHXGeoJson;
 
 namespace CHXDatabase.IO
 {
@@ -47,5 +48,7 @@ namespace CHXDatabase.IO
         public abstract CHXQuery GetColumns(string schemaName, string tableName);
 
         public abstract CHXQuery GetAllGeometryColumns();
+
+        public abstract string GetSpatialQuery(CHXTable cHXTable, QueryGeometry geometry);
     }
 }

@@ -91,6 +91,7 @@ namespace CHXDataService
             var settings = container.Resolve<IApplicationSettings>();
 
             app.Map(settings.NancyBasePath, siteBuilder => siteBuilder.UseNancy());
+            app.Map("", siteBuilder => siteBuilder.UseNancy());
         }
 
     }

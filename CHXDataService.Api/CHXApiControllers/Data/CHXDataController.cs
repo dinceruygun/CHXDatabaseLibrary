@@ -44,6 +44,10 @@ namespace CHXDataService.Api.CHXApiControllers.Data
                     return new Model.CHXGetIndex(base.Principal);
                 case "getsequence":
                     return new Model.CHXGetSequence(base.Principal);
+                case "status":
+                    return new Model.CHXStatus(base.Principal);
+                case "version":
+                    return new Model.CHXVersion(base.Principal);
                 default:
                     return null;
             }

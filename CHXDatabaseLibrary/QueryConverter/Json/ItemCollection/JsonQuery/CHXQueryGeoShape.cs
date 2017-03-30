@@ -16,6 +16,7 @@ namespace CHXDatabaseLibrary.QueryConverter.Json.ItemCollection.JsonQuery
 
             var geometry = new CHXGeometry();
             geometry.ReadGeoJson(jsonElement.Value.location.shape.ToString());
+            var distance = jsonElement.Value.location.distance == null ? 0 : double.Parse(jsonElement.Value.location.distance.ToString());
 
             var relation = (CHXGeometryRelation)System.Enum.Parse(typeof(CHXGeometryRelation), jsonElement.Value.location.relation.ToString());
 
@@ -26,7 +27,8 @@ namespace CHXDatabaseLibrary.QueryConverter.Json.ItemCollection.JsonQuery
             query.QueryGeometryList.Add(new QueryGeometry()
             {
                 Geometry = geometry,
-                Relation = relation
+                Relation = relation,
+                Distance = distance
             });
         }
     }

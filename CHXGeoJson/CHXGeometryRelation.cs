@@ -8,6 +8,7 @@ namespace CHXGeoJson
 {
     public enum CHXGeometryRelation
     {
-        intersect = 1
+        intersect = 1,
+        distance = 2
     }
 }

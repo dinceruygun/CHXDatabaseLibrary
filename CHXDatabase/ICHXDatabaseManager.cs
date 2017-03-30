@@ -17,6 +17,8 @@ namespace CHXDatabase.IO
         public abstract CHXTableCollection Tables { get; }
         public abstract CHXDatabase Database { get; set; }
         public abstract ICHXCommandManager CommandManager { get; }
+        public abstract bool Status { get; }
+        public abstract string Version { get; }
 
 
         public abstract QueryContainer ConvertQuery<T>(T data, CHXQueryType queryType);

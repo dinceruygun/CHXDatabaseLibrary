@@ -19,17 +19,12 @@ namespace CHXDataService.Modules
         {
 
 
-            Get[@"/{uri*}"] = parameters =>
+
+            Get["/Home"] = _ =>
             {
-                var regex = new Regex(@"\.(png|gif|jpg|jpeg)$");
-                if (regex.IsMatch(parameters.uri))
-                {
-                    return View["index"];
-                }
-                else
-                {
-                    return null;
-                }
+
+                return View["index"];
+
             };
 
 

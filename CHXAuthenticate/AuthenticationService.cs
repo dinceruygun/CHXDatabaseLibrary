@@ -42,7 +42,9 @@ namespace CHXAuthenticate
 
             // We got a User, now obtain his claims from DB:
             IList<Claim> claims = new List<Claim>() { };
-            
+
+
+            claims.Add(new Claim() { Type = "basic", Value = "true", Id = 0 });
             claims.Add(new Claim() { Type = "data", Value = "true", Id = 1 });
             claims.Add(new Claim() { Type = "data.getalltables", Value = "true", Id = 2 });
             claims.Add(new Claim() { Type = "data.getallviews", Value = "true", Id = 3 });
