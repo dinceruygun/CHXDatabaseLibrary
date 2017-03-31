@@ -22,9 +22,7 @@ namespace CHXDataService.Modules
 
             Get["/Home"] = _ =>
             {
-
                 return View["index"];
-
             };
 
 
@@ -45,10 +43,7 @@ namespace CHXDataService.Modules
             Post["/{controller}/{model}"] = parameters =>
             {
                 return CallMethod(parameters, "post");
-
             };
-
-
             
 
         }

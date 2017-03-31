@@ -107,6 +107,7 @@ namespace CHXDataService
         {
             base.ConfigureConventions(nancyConventions);
             nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("Scripts"));
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("node_modules"));
         }
     }
 }
