@@ -32,6 +32,7 @@ namespace CHXConverter.CHXHttpConverter.ContentTypeContainer
             }
 
             result.Data = jsonData.ToString();
+            result.ConvertData = jsonData;
 
             return result;
         }

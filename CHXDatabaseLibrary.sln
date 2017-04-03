@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHXPostgreSqlLibrary", "CHX
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHXDatabase.IO", "CHXDatabase\CHXDatabase.IO.csproj", "{14DBC944-3C0B-4909-9E20-17BED001BC90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHXDataModel", "CHXDataModel\CHXDataModel.csproj", "{58F4ADDA-B81C-4E5E-83DA-762999D3D771}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,10 @@ Global
 		{14DBC944-3C0B-4909-9E20-17BED001BC90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14DBC944-3C0B-4909-9E20-17BED001BC90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14DBC944-3C0B-4909-9E20-17BED001BC90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58F4ADDA-B81C-4E5E-83DA-762999D3D771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58F4ADDA-B81C-4E5E-83DA-762999D3D771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58F4ADDA-B81C-4E5E-83DA-762999D3D771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58F4ADDA-B81C-4E5E-83DA-762999D3D771}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,6 +11,8 @@ namespace CHXConverter
         CHXParameter _parameters;
         TimeSpan _elapsed;
         string _data;
+        dynamic _convertData;
+
 
         public CHXParameter Parameters
         {
@@ -48,6 +50,19 @@ namespace CHXConverter
             set
             {
                 _data = value;
+            }
+        }
+
+        public dynamic ConvertData
+        {
+            get
+            {
+                return _convertData;
+            }
+
+            set
+            {
+                _convertData = value;
             }
         }
 

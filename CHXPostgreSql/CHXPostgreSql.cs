@@ -202,7 +202,7 @@ namespace CHXPostgreSqlLibrary
                 if (string.IsNullOrEmpty(firstTable)) firstTable = q.TableName;
 
 
-                
+
 
 
                 if (where.Length > 0 && q.QueryFind != null)
@@ -282,10 +282,37 @@ namespace CHXPostgreSqlLibrary
             }
 
 
-            var sql = $"select {fields.ToString()} from {firstTable} {join.ToString()} where {where.ToString()} {group}";
+
+            
+            if (queryContainer.CountOnly == true) fields = new StringBuilder(" count(*) ");
 
 
-            return sql;
+
+            var resultSql = new StringBuilder();
+
+            resultSql.Append("select ");
+            resultSql.Append(fields.ToString());
+            resultSql.Append(" from ");
+            resultSql.Append(firstTable);
+            resultSql.Append(" ");
+            resultSql.Append(join.ToString());
+
+            if (where.Length > 0)
+            {
+                resultSql.Append(" where ");
+                resultSql.Append(where.ToString());
+            }
+
+            resultSql.Append(" ");
+            resultSql.Append(group.ToString());
+
+
+
+
+            if (queryContainer.Limit > 0) resultSql.Append($" limit {queryContainer.Limit.ToString()}");
+
+
+            return resultSql.ToString();
         }
 
         public override object ToParameter(QueryContainer queryContainer)

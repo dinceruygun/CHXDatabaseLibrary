@@ -26,6 +26,8 @@ namespace CHXDataService.Api.CHXApiControllers.Model
             {
                 case "query":
                     return new Model.CHXQuery(base.Principal);
+                case "add":
+                    return new Model.CHXAdd(base.Principal);
                 default:
                     return null;
             }

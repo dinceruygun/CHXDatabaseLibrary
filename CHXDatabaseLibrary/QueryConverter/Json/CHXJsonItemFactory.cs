@@ -19,6 +19,10 @@ namespace CHXDatabaseLibrary.QueryConverter.Json
                 {
                     case "server":
                         return new CHXJsonServer();
+                    case "countonly":
+                        return new CHXJsonCountOnly();
+                    case "limit":
+                        return new CHXJsonLimit();
                     case "query":
                         return new CHXJsonQuery();
                     case "schema":

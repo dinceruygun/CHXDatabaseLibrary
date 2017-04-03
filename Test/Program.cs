@@ -39,7 +39,7 @@ namespace Test
             //                                        CHXQueryType.Json);
 
 
-            var query = manager.ConvertQuery<string>(@"{ ""server"": ""atakumgis"", ""schema"": ""public"", ""query"": { ""parsel"": { ""type"": ""table"", ""addgeometry"": true, ""field"": [ ""objectid"", ""adaparsel"", ""alan"" ], ""geo_shape"": { ""location"": { ""shape"": { ""type"": ""Point"", ""coordinates"" : [515458.256064797, 4585609.61491352] }, ""relation"": ""distance"", ""distance"" : 20 } } } } }",
+            var query = manager.ConvertQuery<string>(@"{ ""server"": ""atakumgis"", ""schema"": ""public"", ""limit"":2, ""query"": { ""parsel"": { ""type"": ""table"", ""addgeometry"": true, ""field"": [ ""objectid"", ""adaparsel"", ""alan"" ], ""geo_shape"": { ""location"": { ""shape"": { ""type"": ""Point"", ""coordinates"" : [515458.256064797, 4585609.61491352] }, ""relation"": ""distance"", ""distance"" : 20 } } } } }",
                                                     CHXQueryType.Json);
 
 

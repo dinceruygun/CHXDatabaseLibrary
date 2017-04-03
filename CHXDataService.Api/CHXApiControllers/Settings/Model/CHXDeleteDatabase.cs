@@ -17,7 +17,7 @@ namespace CHXDataService.Api.CHXApiControllers.Settings.Model
 
         public override object Call(CHXRequest data, string method)
         {
-            if (method.ToLower() != "put") return null;
+            if (method.ToLower() != "post") return null;
 
             var _name = data.Find("name");
 

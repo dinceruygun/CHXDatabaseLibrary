@@ -129,8 +129,10 @@
     <Compile Include="QueryConverter\Json\CHXJsonItemFactory.cs" />
     <Compile Include="QueryConverter\Json\CHXJsonQueryConverter.cs" />
     <Compile Include="QueryConverter\Json\ICHXJsonItemConverter.cs" />
+    <Compile Include="QueryConverter\Json\ItemCollection\CHXJsonCountOnly.cs" />
     <Compile Include="QueryConverter\Json\ItemCollection\CHXJsonGroup.cs" />
     <Compile Include="QueryConverter\Json\ItemCollection\CHXJsonJoin.cs" />
+    <Compile Include="QueryConverter\Json\ItemCollection\CHXJsonLimit.cs" />
     <Compile Include="QueryConverter\Json\ItemCollection\CHXJsonQuery.cs" />
     <Compile Include="QueryConverter\Json\ItemCollection\CHXJsonSchema.cs" />
     <Compile Include="QueryConverter\Json\ItemCollection\CHXJsonServer.cs" />

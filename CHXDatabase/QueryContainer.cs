@@ -14,6 +14,8 @@ namespace CHXDatabase.IO
 
         public string Server { get; set; }
         public string Schema { get; set; }
+        public bool CountOnly { get; set; }
+        public int Limit { get; set; }
         public QueryCollection Query { get; set; }
         public List<QueryJoin> Join { get; set; }
         public List<string> Group { get; set; }
