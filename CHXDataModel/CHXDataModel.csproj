@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,8 +44,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CHXDatabaseCollection.cs" />
+    <Compile Include="CHXDatabaseFactory.cs" />
     <Compile Include="CHXDataModelManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CHXConverter\CHXConverter.csproj">
+      <Project>{7ea1822d-2c5d-4c54-9b27-15a6c87071d2}</Project>
+      <Name>CHXConverter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CHXDatabaseLibrary\CHXDatabaseLibrary.csproj">
+      <Project>{75eda605-a9e7-45d6-a002-61f2daab9a18}</Project>
+      <Name>CHXDatabaseLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CHXDatabase\CHXDatabase.IO.csproj">
+      <Project>{14dbc944-3c0b-4909-9e20-17bed001bc90}</Project>
+      <Name>CHXDatabase.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CHXSettings\CHXSettings.csproj">
+      <Project>{e6dfd254-7947-4a4b-a062-a0d5f751d0d9}</Project>
+      <Name>CHXSettings</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

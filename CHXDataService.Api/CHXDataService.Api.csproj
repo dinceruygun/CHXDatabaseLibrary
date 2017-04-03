@@ -69,8 +69,6 @@
     <Compile Include="CHXDataApiControllerFactory.cs" />
     <Compile Include="CHXApiControllers\Data\CHXDataController.cs" />
     <Compile Include="CHXApiControllers\Data\Model\CHXGetAllTables.cs" />
-    <Compile Include="CHXDatabaseCollection.cs" />
-    <Compile Include="CHXDatabaseFactory.cs" />
     <Compile Include="CHXDataServiceApiManager.cs" />
     <Compile Include="CHXDataApi.cs" />
     <Compile Include="CHXHttpRequest\CHXContentType.cs" />
@@ -101,6 +99,10 @@
     <ProjectReference Include="..\CHXDatabase\CHXDatabase.IO.csproj">
       <Project>{14dbc944-3c0b-4909-9e20-17bed001bc90}</Project>
       <Name>CHXDatabase.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CHXDataModel\CHXDataModel.csproj">
+      <Project>{58f4adda-b81c-4e5e-83da-762999d3d771}</Project>
+      <Name>CHXDataModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\CHXGeoJson\CHXGeoJson.csproj">
       <Project>{f79318fa-e2cd-4cae-8cc7-83b85b23651a}</Project>

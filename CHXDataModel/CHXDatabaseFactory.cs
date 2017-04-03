@@ -11,7 +11,7 @@ using CHXConverter;
 using CHXDatabase;
 using CHXDatabase.IO;
 
-namespace CHXDataService.Api
+namespace CHXDataModel
 {
     public class CHXDatabaseSettingsList : List<CHXDatabaseSettings> { }
 
@@ -111,20 +111,6 @@ namespace CHXDataService.Api
         static CHXDatabaseFactory()
         {
             Load();
-
-
-            return;
-
-            var parameters = new CHXDatabaseParameters();
-
-            parameters.Add("Server", "192.168.2.188");
-            parameters.Add("Port", "5432");
-            parameters.Add("Database", "kbb_test");
-            parameters.Add("User Id", "postgres");
-            parameters.Add("Password", "ntc123*");
-
-
-            DatabaseCollection.Add("test", parameters, CHXDatabaseType.PostgreSql);
         }
 
         public static CHXDatabaseContainer GetDatabase(string databaseName)

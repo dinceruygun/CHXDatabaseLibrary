@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CHXDatabase.IO;
 using Newtonsoft.Json;
+using CHXDataModel;
 
 namespace CHXDataService.Api.CHXApiControllers.Model.Model
 {

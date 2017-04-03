@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CHXDatabase.IO;
 
-namespace CHXDataService.Api
+namespace CHXDataModel
 {
     public class CHXDatabaseCollection: ICollection
     {

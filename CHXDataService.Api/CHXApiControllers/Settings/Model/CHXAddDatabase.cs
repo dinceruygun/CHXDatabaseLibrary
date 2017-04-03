@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using CHXDatabase.IO;
+using CHXDataModel;
 
 namespace CHXDataService.Api.CHXApiControllers.Settings.Model
 {

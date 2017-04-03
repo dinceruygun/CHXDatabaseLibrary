@@ -7,6 +7,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using CHXDatabase.IO;
+using CHXDataModel;
 
 namespace CHXDataService.Api.CHXApiControllers.Model.Model
 {
@@ -29,13 +30,16 @@ namespace CHXDataService.Api.CHXApiControllers.Model.Model
             if (_server == null) return null;
             if (_query == null) return null;
 
-            var mydb = CHXDatabaseFactory.GetDatabase(_server.Value.ToString());
 
-            if (mydb == null) throw new NullReferenceException($"{_server.Value.ToString()} isimli veri tabanı bulunamadı");
+            var result = CHXDataModelManager.Query(data.Data, _server.Value.ToString(), CHXQueryType.Json);
+
+            //var mydb = CHXDatabaseFactory.GetDatabase(_server.Value.ToString());
+
+            //if (mydb == null) throw new NullReferenceException($"{_server.Value.ToString()} isimli veri tabanı bulunamadı");
 
 
-            var query = mydb.Database.ConvertQuery<string>(data.Data, CHXQueryType.Json);
-            var result = mydb.Database.RunQuery<dynamic>(query);
+            //var query = mydb.Database.ConvertQuery<string>(data.Data, CHXQueryType.Json);
+            //var result = mydb.Database.RunQuery<dynamic>(query);
 
             if (result == null) return null;
 
