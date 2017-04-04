@@ -23,7 +23,7 @@ namespace CHXDataService
 
         protected override void OnStart(string[] args)
         {
-            myHostService = new HostService("1453", "192.168.2.126");
+            myHostService = new HostService("1453", "localhost");
 
             myHostService.Start();
 

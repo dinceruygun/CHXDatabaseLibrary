@@ -59,7 +59,7 @@ namespace CHXDataService
 
         private void Initialize()
         {
-            string url = $"http://*:{_port}";
+            string url = $"http://+:{_port}";
             _server = WebApp.Start<Startup>(url: url);
             //_host = new NancyHost(new Uri(url));
 
