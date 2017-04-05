@@ -9,6 +9,23 @@ namespace CHXDataModel
 {
     public static class CHXDataModelManager
     {
+        private static CHXModelCollection _modelCollection;
+
+        public static CHXModelCollection ModelCollection
+        {
+            get
+            {
+                return _modelCollection;
+            }
+        }
+
+
+        static CHXDataModelManager()
+        {
+            _modelCollection = new CHXModelCollection();
+        }
+
+
         public static dynamic Query(string query, string server, CHXQueryType queryType)
         {
             var mydb = CHXDatabaseFactory.GetDatabase(server);

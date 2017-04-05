@@ -65,6 +65,7 @@ namespace CHXAuthenticate
             claims.Add(new Claim() { Type = "model", Value = "true", Id = 14 });
             claims.Add(new Claim() { Type = "model.query", Value = "true", Id = 15 });
             claims.Add(new Claim() { Type = "model.add", Value = "true", Id = 16 });
+            claims.Add(new Claim() { Type = "model.delete", Value = "true", Id = 17 });
 
 
             // And return the UserIdentity:

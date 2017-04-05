@@ -15,6 +15,9 @@ namespace Test
         static void Main(string[] args)
         {
 
+            string aaa = "denemeveri";
+            var test = aaa.HasSpecialChars();
+
             var tt = new CHXGeometry();
             tt.ReadWkt("MULTILINESTRING((31.4496904 36.7991082,31.4504789 36.7986288), (31.4496904 36.7991082,31.4504789 36.7986288))");
 

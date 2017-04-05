@@ -28,6 +28,8 @@ namespace CHXDataService.Api.CHXApiControllers.Model
                     return new Model.CHXQuery(base.Principal);
                 case "add":
                     return new Model.CHXAdd(base.Principal);
+                case "delete":
+                    return new Model.CHXDelete(base.Principal);
                 default:
                     return null;
             }

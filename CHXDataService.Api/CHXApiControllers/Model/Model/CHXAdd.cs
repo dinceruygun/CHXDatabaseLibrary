@@ -27,7 +27,6 @@ namespace CHXDataService.Api.CHXApiControllers.Model.Model
             var _name = data.Find("name");
             var _model = data.Find("model");
 
-            var jsonData = JsonConvert.DeserializeObject(data.Data);
 
             var _server = data.Find("server");
             var _schema = data.Find("schema");
@@ -36,21 +35,28 @@ namespace CHXDataService.Api.CHXApiControllers.Model.Model
             if (_server == null) return null;
             if (_query == null) return null;
 
-            var mydb = CHXDatabaseFactory.GetDatabase(_server.Value.ToString());
 
-            if (mydb == null) throw new NullReferenceException($"{_server.Value.ToString()} isimli veri tabanı bulunamadı");
+            var result = CHXDataModelManager.Query((data.ConvertData.model.ToString() as string), _server.Value.ToString(), CHXQueryType.Json);
+
+            if (result is CHXFeatures)
+            {
+                var model = new CHXModel() { Name = _name.Value.ToString(), QueryString = data.ConvertData.model.ToString() };
 
 
-            var query = mydb.Database.ConvertQuery<string>(data.Data, CHXQueryType.Json);
-            var result = mydb.Database.RunQuery<dynamic>(query);
+                CHXDataModelManager.ModelCollection.Add(model);
+            }
+            else
+            {
+                throw new Exception("Query doğru çalışmadı");
+            }
 
-            if (result == null) return null;
+
 
             var collection = new CHXFeatureCollection();
             collection.features = result as CHXFeatures;
             collection.type = "FeatureCollection";
 
-            return collection;
+            return "OK";
         }
 
         public override string GetPermissionName()

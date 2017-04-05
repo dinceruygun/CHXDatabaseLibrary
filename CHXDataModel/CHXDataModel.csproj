@@ -47,6 +47,8 @@
     <Compile Include="CHXDatabaseCollection.cs" />
     <Compile Include="CHXDatabaseFactory.cs" />
     <Compile Include="CHXDataModelManager.cs" />
+    <Compile Include="CHXModel.cs" />
+    <Compile Include="CHXModelCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

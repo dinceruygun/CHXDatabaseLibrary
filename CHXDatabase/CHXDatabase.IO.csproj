@@ -45,6 +45,7 @@
     <Compile Include="CHXDatabaseParameter.cs" />
     <Compile Include="CHXDatabaseParameters.cs" />
     <Compile Include="CHXDatabaseType.cs" />
+    <Compile Include="CHXExtention.cs" />
     <Compile Include="CHXQuery.cs" />
     <Compile Include="CHXQueryType.cs" />
     <Compile Include="DatabaseFeatures\CHXColumn.cs" />
