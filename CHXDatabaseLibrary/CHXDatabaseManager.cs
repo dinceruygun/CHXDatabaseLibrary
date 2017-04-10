@@ -214,7 +214,24 @@ namespace CHXDatabaseLibrary
 
             var result = converter.Convert<T>(data);
 
-            if (result.AddGeometry) result.GeometryColumn = Tables.Find(t => t.TableName == result.GeometryTable && t.SchemaName == result.GeometryTableSchema).GeometryColumn.Name;
+            if (result == null) return null;
+
+            if (result.Query == null) return result;
+
+            if (result.Query.Count == 0) return result;
+
+
+
+            if (result.Query.Any(q => q.QueryType == "model"))
+            {
+
+            }
+            else if (result.Query.Any(q => q.QueryType == "table"))
+            {
+                if (result.AddGeometry) result.GeometryColumn = Tables.Find(t => t.TableName == result.GeometryTable && t.SchemaName == result.GeometryTableSchema).GeometryColumn.Name;
+            }
+
+
 
             result.Database = this.Database;
 
