@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CHXDatabase.IO;
+using Newtonsoft.Json.Linq;
 
 namespace CHXDatabaseLibrary.QueryConverter.Json.ItemCollection
 {
@@ -29,8 +30,8 @@ namespace CHXDatabaseLibrary.QueryConverter.Json.ItemCollection
                         {
                             var join = new QueryJoin();
                             join.joinType = _joinType;
-                            join.Destination = item.Name;
-                            join.Target = item.Value;
+                            join.Destination = ((item as JObject).First as JProperty).Name;
+                            join.Target = ((item as JObject).First as JProperty).Value.ToString();
 
 
                             query.Join.Add(join);

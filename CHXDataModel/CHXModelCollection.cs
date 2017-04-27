@@ -13,7 +13,7 @@ namespace CHXDataModel
     {
         List<CHXModel> _modelList;
 
-        private List<CHXModel> ModelList
+        public List<CHXModel> ModelList
         {
             get
             {

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CHXDatabase.IO;
 using CHXDataModel;
+using CHXDataServiceSettings;
 
 namespace CHXDataService.Api.CHXApiControllers.Settings.Model
 {
@@ -31,14 +32,14 @@ namespace CHXDataService.Api.CHXApiControllers.Settings.Model
             if (_parameters == null) return null;
 
 
-            if (CHXDatabaseFactory.DatabaseCollection[_name.Value.ToString()] != null) return "Aynı isimden veri tabanı bulunuyor";
+            if (CHXDatabaseModelFactory.DatabaseCollection[_name.Value.ToString()] != null) return "Aynı isimden veri tabanı bulunuyor";
 
 
             CHXDatabaseType databaseType = (CHXDatabaseType)System.Enum.Parse(typeof(CHXDatabaseType), _type.Value.ToString());
            var parameters = new CHXDatabaseParameters();
             parameters.AddRange(_parameters.Select(p => new CHXDatabaseParameter(p.Name, p.Value.ToString())));
 
-            CHXDatabaseFactory.AddDatabase(_name.Value.ToString(), parameters, databaseType);
+            CHXDatabaseModelFactory.AddDatabase(_name.Value.ToString(), parameters, databaseType);
 
 
             return _name.Value.ToString();

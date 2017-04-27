@@ -1,17 +1,10 @@
 ﻿using CHXDatabaseLibrary;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
-using CHXConverter;
-using CHXDatabase;
 using CHXDatabase.IO;
 
-namespace CHXDataModel
+namespace CHXDataServiceSettings
 {
     public class CHXDatabaseSettingsList : List<CHXDatabaseSettings> { }
 
@@ -22,7 +15,7 @@ namespace CHXDataModel
         public CHXDatabaseType? type { get; set; }
     }
 
-    public static class CHXDatabaseFactory
+    public static class CHXDatabaseModelFactory
     {
         private static object _locker = new object();
 
@@ -108,7 +101,7 @@ namespace CHXDataModel
             }
         }
 
-        static CHXDatabaseFactory()
+        static CHXDatabaseModelFactory()
         {
             Load();
         }

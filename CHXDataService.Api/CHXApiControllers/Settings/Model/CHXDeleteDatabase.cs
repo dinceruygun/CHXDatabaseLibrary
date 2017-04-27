@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using CHXDataModel;
+using CHXDataServiceSettings;
 
 namespace CHXDataService.Api.CHXApiControllers.Settings.Model
 {
@@ -23,7 +24,7 @@ namespace CHXDataService.Api.CHXApiControllers.Settings.Model
             var _name = data.Find("name");
 
 
-             CHXDatabaseFactory.DeleteDatabase(_name.Value.ToString());
+            CHXDatabaseModelFactory.DeleteDatabase(_name.Value.ToString());
 
             return "OK";
         }

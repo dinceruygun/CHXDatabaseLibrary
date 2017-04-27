@@ -9,6 +9,7 @@ using CHXDatabase;
 using CHXDatabase.IO;
 using CHXDatabase.IO.DatabaseFeatures;
 
+
 namespace CHXDatabaseLibrary
 {
     public class CHXDatabaseManager: ICHXDatabaseManager
@@ -206,6 +207,7 @@ namespace CHXDatabaseLibrary
             return this.RunQuery<T>(query);
         }
 
+
         public override QueryContainer ConvertQuery<T>(T data, CHXQueryType queryType)
         {
             var converter = QueryConverter.CHXQueryConverterFactory.GetQueryConverter(queryType);
@@ -224,7 +226,7 @@ namespace CHXDatabaseLibrary
 
             if (result.Query.Any(q => q.QueryType == "model"))
             {
-
+                
             }
             else if (result.Query.Any(q => q.QueryType == "table"))
             {

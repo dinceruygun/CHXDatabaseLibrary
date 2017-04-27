@@ -30,6 +30,8 @@ namespace CHXDataService.Api.CHXApiControllers.Model
                     return new Model.CHXAdd(base.Principal);
                 case "delete":
                     return new Model.CHXDelete(base.Principal);
+                case "getallmodel":
+                    return new Model.CHXGetAllModel(base.Principal);
                 default:
                     return null;
             }

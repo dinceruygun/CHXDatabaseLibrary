@@ -35,7 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -62,6 +62,7 @@
     <Compile Include="CHXApiControllers\Model\CHXModelController.cs" />
     <Compile Include="CHXApiControllers\Model\Model\CHXAdd.cs" />
     <Compile Include="CHXApiControllers\Model\Model\CHXDelete.cs" />
+    <Compile Include="CHXApiControllers\Model\Model\CHXGetAllModel.cs" />
     <Compile Include="CHXApiControllers\Model\Model\CHXQuery.cs" />
     <Compile Include="CHXApiControllers\Settings\CHXSettingsController.cs" />
     <Compile Include="CHXApiControllers\Settings\Model\CHXAddDatabase.cs" />
@@ -104,6 +105,10 @@
     <ProjectReference Include="..\CHXDataModel\CHXDataModel.csproj">
       <Project>{58f4adda-b81c-4e5e-83da-762999d3d771}</Project>
       <Name>CHXDataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CHXDataServiceSettings\CHXDataServiceSettings.csproj">
+      <Project>{02090960-77c8-4f75-ab24-2540af06da82}</Project>
+      <Name>CHXDataServiceSettings</Name>
     </ProjectReference>
     <ProjectReference Include="..\CHXGeoJson\CHXGeoJson.csproj">
       <Project>{f79318fa-e2cd-4cae-8cc7-83b85b23651a}</Project>

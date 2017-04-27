@@ -193,7 +193,7 @@ namespace CHXPostgreSqlLibrary
                     var table = this.DatabaseManager.Tables.Find(t => t.TableName == q.TableName && t.SchemaName == queryContainer.Schema);
                     if (table.IsSpatial && table.GeometryColumn != null)
                     {
-                        fields.Append($", st_astext({table.GeometryColumn.Name}) as {table.GeometryColumn.Name}");
+                        fields.Append($", st_astext({table.GeometryColumn.TableName}.{table.GeometryColumn.Name}) as {table.GeometryColumn.Name}");
                         //fields.Append($", st_asgeojson({table.GeometryColumn.Name}) as {table.GeometryColumn.Name}");
                     }
                 }

@@ -44,8 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CHXDatabaseCollection.cs" />
-    <Compile Include="CHXDatabaseFactory.cs" />
     <Compile Include="CHXDataModelManager.cs" />
     <Compile Include="CHXModel.cs" />
     <Compile Include="CHXModelCollection.cs" />
@@ -63,6 +61,10 @@
     <ProjectReference Include="..\CHXDatabase\CHXDatabase.IO.csproj">
       <Project>{14dbc944-3c0b-4909-9e20-17bed001bc90}</Project>
       <Name>CHXDatabase.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CHXDataServiceSettings\CHXDataServiceSettings.csproj">
+      <Project>{02090960-77c8-4f75-ab24-2540af06da82}</Project>
+      <Name>CHXDataServiceSettings</Name>
     </ProjectReference>
     <ProjectReference Include="..\CHXSettings\CHXSettings.csproj">
       <Project>{e6dfd254-7947-4a4b-a062-a0d5f751d0d9}</Project>

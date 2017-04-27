@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using CHXDataModel;
+using CHXDataServiceSettings;
 
 namespace CHXDataService.Api.CHXApiControllers.Settings.Model
 {
@@ -21,7 +22,7 @@ namespace CHXDataService.Api.CHXApiControllers.Settings.Model
             if (method.ToLower() != "get") return null;
 
 
-            return CHXDatabaseFactory.DatabaseCollection.DatabaseList.Select(d =>
+            return CHXDatabaseModelFactory.DatabaseCollection.DatabaseList.Select(d =>
                         new CHXDatabaseSettings()
                         {
                             name = d.Name,

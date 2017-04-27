@@ -25,7 +25,7 @@ namespace Test
 
             parameters.Add("Server", "192.168.2.188");
             parameters.Add("Port", "5432");
-            parameters.Add("Database", "atakumgis");
+            parameters.Add("Database", "beylikduzugis");
             parameters.Add("User Id", "postgres");
             parameters.Add("Password", "ntc123*");
             
@@ -42,7 +42,7 @@ namespace Test
             //                                        CHXQueryType.Json);
 
 
-            var query = manager.ConvertQuery<string>(@"{ ""server"": ""atakumgis"", ""schema"": ""public"", ""limit"":2, ""query"": { ""parsel"": { ""type"": ""table"", ""addgeometry"": true, ""field"": [ ""objectid"", ""adaparsel"", ""alan"" ], ""geo_shape"": { ""location"": { ""shape"": { ""type"": ""Point"", ""coordinates"" : [515458.256064797, 4585609.61491352] }, ""relation"": ""distance"", ""distance"" : 20 } } } } }",
+            var query = manager.ConvertQuery<string>(@"{ ""server"": ""beylikduzugis"", ""schema"": ""public"", ""limit"":2, ""query"": { ""parsel"": { ""type"": ""table"", ""addgeometry"": true, ""field"": [ ""objectid"", ""adaparsel"", ""alan"" ], ""geo_shape"": { ""location"": { ""shape"": { ""type"": ""Point"", ""coordinates"" : [515458.256064797, 4585609.61491352] }, ""relation"": ""distance"", ""distance"" : 20 } } } } }",
                                                     CHXQueryType.Json);
 
 

@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using CHXDataModel;
+using CHXDataServiceSettings;
 
 namespace CHXDataService.Api.CHXApiControllers.Data.Model
 {
@@ -20,7 +21,7 @@ namespace CHXDataService.Api.CHXApiControllers.Data.Model
         {
             var serverName = data.Find("server");
 
-            var myDatabase = CHXDatabaseFactory.GetDatabase(serverName.Value.ToString());
+            var myDatabase = CHXDatabaseModelFactory.GetDatabase(serverName.Value.ToString());
 
             if (myDatabase == null) return null;
 

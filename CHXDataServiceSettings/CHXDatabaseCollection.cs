@@ -7,13 +7,19 @@ using System.Text;
 using System.Threading.Tasks;
 using CHXDatabase.IO;
 
-namespace CHXDataModel
+namespace CHXDataServiceSettings
 {
     public class CHXDatabaseCollection: ICollection
     {
-        private List<CHXDatabaseContainer> databaseList = new List<CHXDatabaseContainer>();
+        private List<CHXDatabaseContainer> databaseList;
 
 
+
+
+        public CHXDatabaseCollection()
+        {
+            databaseList = new List<CHXDatabaseContainer>();
+        }
 
         public CHXDatabaseContainer this[int index]
         {
@@ -156,6 +162,18 @@ namespace CHXDataModel
             {
                 _name = value;
             }
+        }
+
+        public QueryContainer ConvertQuery<T>(T data, CHXQueryType queryType)
+        {
+            return this.Database.ConvertQuery <T> (data, CHXQueryType.Json);
+        }
+
+        public IEnumerable<T> RunQuery<T>(object query)
+        {
+            if (!(query is QueryContainer)) return null;
+
+            return this.Database.RunQuery<T>((query as QueryContainer));
         }
     }
 }
