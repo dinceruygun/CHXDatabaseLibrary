@@ -224,14 +224,7 @@ namespace CHXDatabaseLibrary
 
 
 
-            if (result.Query.Any(q => q.QueryType == "model"))
-            {
-                
-            }
-            else if (result.Query.Any(q => q.QueryType == "table"))
-            {
-                if (result.AddGeometry) result.GeometryColumn = Tables.Find(t => t.TableName == result.GeometryTable && t.SchemaName == result.GeometryTableSchema).GeometryColumn.Name;
-            }
+            
 
 
 

@@ -11,5 +11,12 @@ namespace CHXGeoJson
         public string type = "Feature";
         public CHXGeometry geometry { get; set; }
         public IDictionary<string, object> properties { get; set; }
+
+
+        public CHXFeature()
+        {
+
+        }
+
     }
 }
